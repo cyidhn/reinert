@@ -14,6 +14,5 @@ func main() {
 	}
 	fmt.Print(string(file))
 	// 2. Traitement du texte importe Traitement de texte par Rainette
-
 	// 4. Retourne les resultats en JSON
 }
