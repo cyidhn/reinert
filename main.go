@@ -13,8 +13,7 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Print(string(file))
-	// 2. Traitement du texte importe
+	// 2. Traitement du texte importe Traitement de texte par Rainette
 
-	// 3. Algo CHD
 	// 4. Retourne les resultats en JSON
 }
