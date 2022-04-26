@@ -7,6 +7,11 @@ import (
 	"os"
 )
 
+func final_preprocess() {
+
+}
+
+
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/all.txt")
@@ -17,6 +22,7 @@ func main() {
 
 	// 2. Traitement du texte importe Traitement de texte par Rainette
 	// 1) Scanner ligne par ligne du fichier
+	
 	// 2) Condition si pour chaque ligne contienne un caractère spécifique
 	// 3) Oui: Supprime la ligne Non: Fait rien
 
