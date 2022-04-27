@@ -17,6 +17,7 @@ func main() {
 	}
 	fmt.Print(string(output))
 	// 1. Traitement de texte pour les tweets
+	
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
