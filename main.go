@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 )
 
 func main() {
@@ -14,15 +15,10 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Print(string(file))
 	// 1. Traitement de texte pour les tweets
-
-
+	reg := regexp.MustCompile(`\d+`) // Test pour les ponctuations
+	res := reg.ReplaceAllString(string(file), "")
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
-}
-
-func finalpreprocess() {
-
-	
+	fmt.Print(res)
 }
