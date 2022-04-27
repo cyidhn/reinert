@@ -1,7 +1,6 @@
 package main 
 
 import (
-	"bytes"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -15,9 +14,10 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Print(string(output))
+	fmt.Print(string(file))
 	// 1. Traitement de texte pour les tweets
 	
+
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
