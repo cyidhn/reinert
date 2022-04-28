@@ -17,7 +17,7 @@ func main() {
 	}
 
 	// 1. Traitement de texte pour les tweets
-	list_reg := `([^\w\s])|(\d+)`
+	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([\p{P}\p{S}]+)`
 	reg := regexp.MustCompile(list_reg) // Test pour les ponctuations
 	res := reg.ReplaceAllString(string(file), "")
 	// 3. Algo de CHD
