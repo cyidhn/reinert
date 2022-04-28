@@ -2,14 +2,17 @@ package main
 
 import (
    "fmt"
-   "regexp"
+   "unicode"
+    "golang.org/x/text/transform"
+    "golang.org/x/text/unicode/norm"
 )
 
-func test() {
+func isMn(r rune) bool {
+   return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
+}
 
-   s := "Abraham Lincoln 43 4 3 65 http:www.google.fr"
-   reg := regexp.MustCompile(`http\S+`)
-   res := reg.ReplaceAllString(s, "${1}")
-   fmt.Println(res) // Abraham Lincoln
-   return
+func main() {
+   t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
+   result, _, _ := transform.String(t, "žůžo")
+   fmt.Println(result)
 }
