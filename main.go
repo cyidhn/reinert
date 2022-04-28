@@ -15,8 +15,10 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	// 1. Traitement de texte pour les tweets
-	reg := regexp.MustCompile(`[^\w\s]`) // Test pour les ponctuations
+	list_reg := `([^\w\s])|(\d+)`
+	reg := regexp.MustCompile(list_reg) // Test pour les ponctuations
 	res := reg.ReplaceAllString(string(file), "")
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
