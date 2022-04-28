@@ -26,10 +26,12 @@ func main() {
 	// 1. Traitement de texte pour les tweets
 	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])`
 	reg := regexp.MustCompile(list_reg) // Test pour les ponctuations
-	res := reg.ReplaceAllString(string(file), "")
+	res := reg.ReplaceAllString(string(file), "")  //Résultat pour Regex 
 
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
-   	result, _, _ := transform.String(t, string(file))
+   	result, _, _ := transform.String(t, string(file))  //Résultat piur remove accents
+	
+	// But: result + res soit appliqué dans file pour un seul traitement 
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 	fmt.Println(res)
