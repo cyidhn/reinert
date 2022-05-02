@@ -15,7 +15,6 @@ func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
  }
 
-
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/new_file.txt")
