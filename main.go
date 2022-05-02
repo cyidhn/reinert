@@ -16,7 +16,6 @@ func isMn(r rune) bool {
  }
 
 
-
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/new_file.txt")
@@ -34,9 +33,7 @@ func main() {
 
 	//Enlever UNIQUEMENT LES ACCENTS DU TEXTE
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
-   	result, _, _ := transform.String(t, string(res))  //Résultat piur remove accents
-
-
+   	result, _, _ := transform.String(t, string(res))  //Résultat pour remove accents
 	// 3. Algo de CHD
 	
 	// 4. Retourne les resultats en JSON
