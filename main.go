@@ -37,7 +37,7 @@ func main() {
 
 	// 1. Traitement de texte pour les tweets
 	min := strings.ToLower(string(file))
-	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|[.,'’”\/#?!$%\^&\*;:+{}=\-_~()«»]`
+	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([.,'’”\/#?!$%\^&\*;:+{}=\-_~()«»])|([\x{1F600}-\x{1F6FF}|[\x{2600}-\x{26FF}])`
 	reg := regexp.MustCompile(list_reg)          // Test pour les ponctuations
 	res := reg.ReplaceAllString(string(min), "") //Résultat pour Regex
 
