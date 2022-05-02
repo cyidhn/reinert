@@ -5,14 +5,16 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
-	"unicode"
-    "golang.org/x/text/transform"
-    "golang.org/x/text/unicode/norm"
+	//"unicode"
+    //"golang.org/x/text/transform"
+    //"golang.org/x/text/unicode/norm"
 )
 
-func isMn(r rune) bool {
-	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
- }
+//func isMn(r rune) bool {
+	//return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
+ //}
+
+
 
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
@@ -24,20 +26,19 @@ func main() {
 	}
 
 	// 1. Traitement de texte pour les tweets
-	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([^\w\s]+)`
+	list_reg := `^\\*\\w+_.*?\n`
 	reg := regexp.MustCompile(list_reg) // Test pour les ponctuations
 	res := reg.ReplaceAllString(string(file), "")  //Résultat pour Regex 
 
 	//Enlever UNIQUEMENT LES ACCENTS DU TEXTE
-	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
-   	result, _, _ := transform.String(t, string(res))  //Résultat piur remove accents
+	//t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
+   	//result, _, _ := transform.String(t, string(res))  //Résultat piur remove accents
 	
-	// But: result + res soit appliqué dans file pour un seul traitement 
 
 	// 3. Algo de CHD
 	
 	// 4. Retourne les resultats en JSON
 	
-	fmt.Println(result)
+	fmt.Println(res)
 	//fmt.Println(result)
 }
