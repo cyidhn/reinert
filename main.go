@@ -5,14 +5,14 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
-	"unicode"
-    "golang.org/x/text/transform"
-    "golang.org/x/text/unicode/norm"
+	//"unicode"
+    //"golang.org/x/text/transform"
+    //"golang.org/x/text/unicode/norm"
 )
 
-func isMn(r rune) bool {
-	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
- }
+//func isMn(r rune) bool {
+	//return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
+ //}
 
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
