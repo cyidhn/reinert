@@ -8,6 +8,7 @@ import (
 	"unicode"
     "golang.org/x/text/transform"
     "golang.org/x/text/unicode/norm"
+	"strings"
 )
 
 func isMn(r rune) bool {
@@ -24,7 +25,8 @@ func main() {
 	}
 
 	// 1. Traitement de texte pour les tweets
-	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])`
+	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|[.,\/#!$%\^&\*;:{}=\-_~()]`
+	min := strings.ToLower(file)
 	reg := regexp.MustCompile(list_reg) // Test pour les ponctuations
 	res := reg.ReplaceAllString(string(file), "")  //Résultat pour Regex 
 
