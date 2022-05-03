@@ -18,7 +18,7 @@ func isMn(r rune) bool {
 
 //func lemmatisation(text string) {
 //var data []DictionnaireStruct
-//data = data.append(data, DictionnaireStruct{"//terme", "lem"})
+//data = data.append(data, DictionnaireStruct{"terme", "lem"})
 //result := strings.Split(text, " ")
 //for i := range result {
 //fmt.Println(result[i])
