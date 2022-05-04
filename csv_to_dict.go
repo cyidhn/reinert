@@ -23,10 +23,10 @@ func read_csv() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, line := range csvlines {
+	for _, data := range csvlines {
 		dict := DictionnaireStruct{
-			Terme:         line[0],
-			Lemmatisation: line[1],
+			Terme:         data[0],
+			Lemmatisation: data[1],
 		}
 		fmt.Println(dict.Terme + " " + dict.Lemmatisation)
 	}

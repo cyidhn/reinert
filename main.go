@@ -16,9 +16,24 @@ func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
 }
 
+func lematize(text string) {
+	tab := []string{}
+	result := strings.Fields(text)
+	var wordtoappend string
+	for word := range result {
+		for element := range []DictionnaireStruct{} {
+			if element.Terme == word {
+				wordtoappend == element.dict.Lemmatisation
+			}
+			tab := append(tab, wordtoappend)
+		}
+		return tab
+	}
+}
+
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
-	file, err := ioutil.ReadFile("./corpus/new_file.txt") //Permet de lire tout l'intégralité du texte
+	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Permet de lire tout l'intégralité du texte
 
 	if err != nil {
 		fmt.Println(err)
@@ -32,7 +47,8 @@ func main() {
 	res := reg.ReplaceAllString(string(min), "")                         //Résultat pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever UNIQUEMENT LES ACCENTS DU TEXTE
 	result, _, _ := transform.String(t, string(res))                     //Résultat pour remove accents
-	fmt.Println(result)
+	//fmt.Println(result)
+	fmt.Println(lematize(result))
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
