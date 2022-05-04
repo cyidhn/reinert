@@ -1,7 +1,12 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"os"
 )
 
 func CSVToMap(reader io.Reader) []map[string]string {
@@ -26,9 +31,15 @@ func CSVToMap(reader io.Reader) []map[string]string {
 			rows = append(rows, dict)
 		}
 	}
-
 	return rows
+}
 
 func main() {
+	file, err := ioutil.ReadFile("./corpus/Lexique383.csv")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println(string(file))
 
 }

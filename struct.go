@@ -1,7 +1,6 @@
 package main
 
 type DictionnaireStruct struct {
-	Terme string
+	Terme         string
 	Lemmatisation string
 }
-
