@@ -8,8 +8,6 @@ import (
 	"os"
 )
 
-var dict []map[string]string
-
 func csv_to_dict() []map[string]string {
 	csvFile, err := os.Open("./corpus/Lexique383.csv")
 	if err != nil {
