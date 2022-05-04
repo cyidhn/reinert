@@ -18,7 +18,7 @@ func isMn(r rune) bool {
 
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
-	file, err := ioutil.ReadFile("./corpus/new_file.txt")
+	file, err := ioutil.ReadFile("./corpus/new_file.txt") //Permet de lire tout l'intégralité du texte
 
 	if err != nil {
 		fmt.Println(err)
