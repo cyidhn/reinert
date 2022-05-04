@@ -17,16 +17,17 @@ func isMn(r rune) bool {
 }
 
 func lematize(text string) {
-	tab := []string{}
-	result := strings.Fields(text)
+	var tab []string
 	var wordtoappend string
+	result := strings.Fields(text)
 	for word := range result {
-		for element := range []DictionnaireStruct{} {
-			if element.Terme == word {
-				wordtoappend == element.dict.Lemmatisation
+		wordtoappend = word //String != Int
+		for _, element := range []DictionnaireStruct{} {
+			if dict.Terme == word {
+				wordtoappend == dict.Lemmatisation
 			}
-			tab := append(tab, wordtoappend)
 		}
+		tab := append(tab, wordtoappend)
 		return tab
 	}
 }
@@ -47,8 +48,8 @@ func main() {
 	res := reg.ReplaceAllString(string(min), "")                         //Résultat pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever UNIQUEMENT LES ACCENTS DU TEXTE
 	result, _, _ := transform.String(t, string(res))                     //Résultat pour remove accents
-	//fmt.Println(result)
-	fmt.Println(lematize(result))
+	fmt.Println(result)
+	//fmt.Println(lematize(result))
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
