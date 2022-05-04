@@ -20,7 +20,7 @@ func lematize(text string) {
 	var tab []string
 	var wordtoappend string
 	result := strings.Fields(text)
-	for word := range result {
+	for word := range result { //Pour chaque NOMBRE de mot
 		wordtoappend = word //String != Int
 		for _, element := range []DictionnaireStruct{} {
 			if dict.Terme == word {
