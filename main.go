@@ -16,12 +16,15 @@ func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
 }
 
+var dict []map[string]string
+
 func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
 	dict := csv_to_dict()
 	result := strings.Fields(text)
-	for word := range result { //Pour chaque NOMBRE de mot
+	str_result := strings.Join(result, " ")
+	for word := range str_result {
 		wordtoappend = result[word]
 		for _, value := range dict {
 			if value["1_ortho"] == result[word] {
@@ -33,7 +36,7 @@ func lematize(text string) string {
 	return strings.Join(tab, " ")
 }
 
-func main() {
+func test() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Permet de lire tout l'intégralité du texte
 
@@ -51,8 +54,7 @@ func main() {
 	result, _, _ := transform.String(t, string(res))                     //Résultat pour remove accents
 	lematizer := lematize(string(result))
 	fmt.Println(lematizer)
-
-	//fmt.Println(lematize(result))
+	//fmt.Println(result)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
