@@ -16,20 +16,21 @@ func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
 }
 
-func lematize(text string) {
+func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
+	dict := csv_to_dict()
 	result := strings.Fields(text)
 	for word := range result { //Pour chaque NOMBRE de mot
-		wordtoappend = word //String != Int
-		for _, element := range []DictionnaireStruct{} {
-			if dict.Terme == word {
-				wordtoappend == dict.Lemmatisation
+		wordtoappend = result[word]
+		for _, value := range dict {
+			if value["1_ortho"] == result[word] {
+				wordtoappend = value["3_lemme"]
 			}
 		}
-		tab := append(tab, wordtoappend)
-		return tab
+		tab = append(tab, wordtoappend)
 	}
+	return strings.Join(tab, " ")
 }
 
 func main() {
@@ -48,7 +49,9 @@ func main() {
 	res := reg.ReplaceAllString(string(min), "")                         //Résultat pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever UNIQUEMENT LES ACCENTS DU TEXTE
 	result, _, _ := transform.String(t, string(res))                     //Résultat pour remove accents
-	fmt.Println(result)
+	lematizer := lematize(string(result))
+	fmt.Println(lematizer)
+
 	//fmt.Println(lematize(result))
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
