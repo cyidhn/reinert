@@ -46,7 +46,7 @@ func preprocess(text string) string {
 	res := reg.ReplaceAllString(lower, "")                               //Résultat pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever les accents du texte
 	result, _, _ := transform.String(t, res)                             //Résultat pour remove accents
-	lematizer := lematize(string(result))                                //Lematization (Environ 15 -20 min du temps d'exécution)
+	lematizer := lematize(string(result))                                //Lematization (Environ 30 min du temps d'exécution)
 	delete_words := stopwords.CleanString(lematizer, "fr", true)         //Stopwords
 	//fmt.Println(lematizer)
 	return delete_words
