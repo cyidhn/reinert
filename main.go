@@ -22,9 +22,8 @@ func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
 	dict := csv_to_dict()
-	result := strings.Fields(text)
-	str_result := strings.Join(result, " ")
-	for word := range str_result {
+	result := strings.Fields(text) //Tableau
+	for word := range result {
 		wordtoappend = result[word]
 		for _, value := range dict {
 			if value["1_ortho"] == result[word] {
