@@ -24,7 +24,7 @@ func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
 	dict := csv_to_dict()
-	result := strings.Fields(text) //Tableau
+	result := strings.Fields(text)
 	for word := range result {
 		wordtoappend = result[word]
 		for _, value := range dict {
@@ -43,7 +43,7 @@ func preprocess(text string) string {
 	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([.,'’”\/#?!$%\^&\*;:+{}=\-_~()«»])|([\x{1F600}-\x{1F6FF}|[\x{2600}-\x{26FF}])`
 	reg := regexp.MustCompile(list_reg)                                  //Compilation du Regex
 	res := reg.ReplaceAllString(lower, "")                               //Résultat pour Regex
-	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever UNIQUEMENT LES ACCENTS DU TEXTE
+	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever les accents du texte
 	result, _, _ := transform.String(t, res)                             //Résultat pour remove accents
 	lematizer := lematize(string(result))                                //Lematization (Environ 15 -20 min du temps d'exécution)
 	delete_words := stopwords.CleanString(lematizer, "fr", true)         //Stopwords
