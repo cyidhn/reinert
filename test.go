@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func test() {
 	dict := csv_to_dict()
 	fmt.Println(dict)
 }

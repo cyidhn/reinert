@@ -35,7 +35,7 @@ func lematize(text string) string {
 	return strings.Join(tab, " ")
 }
 
-func test() {
+func main() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Permet de lire tout l'intégralité du texte
 
