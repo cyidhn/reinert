@@ -60,7 +60,6 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(preprocess(string(file)))
-	//remove_words(file)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
