@@ -25,6 +25,7 @@ func lematize(text string) string {
 	var wordtoappend string
 	dict := csv_to_dict()
 	result := strings.Fields(text)
+	fmt.Println("Load Lemmatization ...")
 	for word := range result {
 		wordtoappend = result[word]
 		for _, value := range dict {
