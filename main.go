@@ -20,17 +20,6 @@ func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
 }
 
-func clean_words(text string) {
-	var tab []string
-	liste_terme := []string{"ve", "n", "s", "d", "l", "j", "y", "c", "e", "m", "h", "quelqu", "cht", "lr", "oas", "qu", "ll", "yu", "an", "g", "TRUE", "jadot", "avectaubira", "zemmourcroissance", "zemmourlille", "cdanslair", "taubirasorbonne", "emmanuel", "bfmpolitique", "aujourd", "macron"}
-	result := strings.Fields(text)
-	for word := range result {
-		if result[word] != liste_terme[word] {
-			tab = append(tab)
-		}
-	}
-}
-
 func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
@@ -52,12 +41,12 @@ func lematize(text string) string {
 func preprocess(text string) string {
 	lower := strings.ToLower(text)
 	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([.,'’”\/#?!$%\^&\*;:+{}=\-_~()«»])|([\x{1F600}-\x{1F6FF}|[\x{2600}-\x{26FF}])`
-	reg := regexp.MustCompile(list_reg)                                  // Test pour les ponctuations
+	reg := regexp.MustCompile(list_reg)                                  //Compilation du Regex
 	res := reg.ReplaceAllString(lower, "")                               //Résultat pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever UNIQUEMENT LES ACCENTS DU TEXTE
 	result, _, _ := transform.String(t, res)                             //Résultat pour remove accents
-	delete_words := stopwords.CleanString(result, "fr", true)            //Stopwords
-	//lematizer := lematize(string(delete_words))
+	lematizer := lematize(string(result))                                //Lematization (Environ 15 -20 min du temps d'exécution)
+	delete_words := stopwords.CleanString(lematizer, "fr", true)         //Stopwords
 	//fmt.Println(lematizer)
 	return delete_words
 }
@@ -70,6 +59,7 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(preprocess(string(file)))
+	//remove_words(file)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
