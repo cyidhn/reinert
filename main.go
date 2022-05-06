@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 
 	"github.com/bbalet/stopwords"
@@ -21,6 +23,7 @@ func isMn(r rune) bool {
 }
 
 func lematize(text string) string {
+	start := time.Now()
 	var tab []string
 	var wordtoappend string
 	dict := csv_to_dict()
@@ -29,12 +32,14 @@ func lematize(text string) string {
 	for word := range result {
 		wordtoappend = result[word]
 		for _, value := range dict {
-			if value["1_ortho"] == result[word] {
-				wordtoappend = value["3_lemme"]
+			if value.Terme == result[word] {
+				wordtoappend = value.Lemmatisation
 			}
 		}
 		tab = append(tab, wordtoappend)
 	}
+	elapsed := time.Since(start)
+	log.Printf("Binomial took %s", elapsed)
 	return strings.Join(tab, " ")
 }
 

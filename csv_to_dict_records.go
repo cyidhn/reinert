@@ -3,12 +3,10 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
-	"io"
-	"log"
 	"os"
 )
 
-func csv_to_dict() []map[string]string {
+func csv_to_dict() []LemmatisationStruct {
 	csvFile, err := os.Open("./corpus/Lexique383.csv")
 	if err != nil {
 		fmt.Println(err)
@@ -21,25 +19,13 @@ func csv_to_dict() []map[string]string {
 		fmt.Println(err)
 	}
 
-	rows := []map[string]string{}
-	var header []string
+	data, err := csvlines.ReadAll()
+	var rows []LemmatisationStruct
 
-	for {
-		record, err := csvlines.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			log.Fatal(err)
-		}
-		if len(header) == 0 {
-			header = record
-		} else {
-			dict := map[string]string{}
-			for i := range header {
-				dict[header[i]] = record[i]
-			}
-			rows = append(rows, dict)
+	// Convert to struct
+	for i, line := range data {
+		if i != 0 {
+			rows = append(rows, LemmatisationStruct{line[0], line[1]})
 		}
 	}
 	//fmt.Println(rows)
