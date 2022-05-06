@@ -64,7 +64,14 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println(preprocess(string(file)))
+
+	new_file := []byte(preprocess(string(file)))
+
+	err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
+	if err2 != nil {
+		log.Fatal(err)
+	}
+
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
