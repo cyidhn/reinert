@@ -65,7 +65,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés
+	new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés par des valeurs binaires
 
 	err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
 	if err2 != nil {
