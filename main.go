@@ -48,10 +48,10 @@ func preprocess(text string) string {
 	lower := strings.ToLower(text)
 	list_reg := `(\d+)|(http\S+)|(www\S+)|(@mention)|(&[a-z])|([.,'’”\/#?!$%\^&\*;:+{}=\-_~()«»])|([\x{1F600}-\x{1F6FF}|[\x{2600}-\x{26FF}])`
 	reg := regexp.MustCompile(list_reg)                                  //Compilation du Regex
-	res := reg.ReplaceAllString(lower, "")                               //Résultat pour Regex
+	res := reg.ReplaceAllString(lower, "")                               //Résultats pour Regex
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC) //Enlever les accents du texte
 	result, _, _ := transform.String(t, res)                             //Résultat pour remove accents
-	lematizer := lematize(string(result))                                //Lematization (Environ 30 min du temps d'exécution)
+	lematizer := lematize(string(result))                                //Lematization
 	delete_words := stopwords.CleanString(lematizer, "fr", true)         //Stopwords
 	//fmt.Println(lematizer)
 	return delete_words
@@ -59,13 +59,13 @@ func preprocess(text string) string {
 
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
-	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Permet de lire tout l'intégralité du texte
+	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	new_file := []byte(preprocess(string(file)))
+	new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés
 
 	err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
 	if err2 != nil {
