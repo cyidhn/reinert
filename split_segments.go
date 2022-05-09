@@ -1,9 +1,6 @@
 package main
 
-//Utilisation des librairies de quandeta R (Fonctions utilisés: tokens, docvars,docnames
-//Librairie dplyr:
-// -> mutate : Ajout des variables
-// -> group_by : Combiner les variables
-// Librairie tidyr:
-// -> unest : Transformer les données
-//inherits = dataframe
+//1) Transformer le resultat en passant du tableau string en string pour des mots lemmatisés
+//2) Développer une fonction pour appliquer le découpage de la segmentation du texte
+//3) Calcul et traitement de la matrice termes-documents (dtm)
+//4) Application de l'algorithme de Rainette (Clustering des mots les plus approchés dans chaque segmentation) CHD

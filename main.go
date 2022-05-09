@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -55,6 +56,24 @@ func preprocess(text string) string {
 	return delete_words
 }
 
+func readwords() []string {
+	file2, err3 := os.Open("./corpus/text_lematize.txt")
+	if err3 != nil {
+		fmt.Println(err3)
+		os.Exit(1)
+	}
+	if err3 != nil {
+		fmt.Println(err3)
+		os.Exit(1)
+	}
+	var words []string
+	scanner := bufio.NewScanner(file2)
+	for scanner.Scan() {
+		words = append(words, scanner.Text())
+	}
+	return words
+}
+
 func main() {
 	// 1. Fonction pour importer le document en format iramuteq
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
@@ -69,7 +88,9 @@ func main() {
 	if err2 != nil {
 		log.Fatal(err)
 	}
-
+	var mots []string
+	mots = readwords()
+	fmt.Println(mots)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
