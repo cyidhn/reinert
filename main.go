@@ -16,8 +16,6 @@ import (
 	"golang.org/x/text/unicode/norm"
 )
 
-var dict []map[string]string
-
 func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
 }
