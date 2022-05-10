@@ -1,8 +1,7 @@
 package main
 
-//1) Transformer le resultat en passant du tableau string en string pour des mots lemmatisés (Fonction compte le nombre de mots)
-func tokenisation {
-	
+func split_segments_words(words string, segment_size int) {
+
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
