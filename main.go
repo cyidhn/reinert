@@ -56,7 +56,7 @@ func preprocess(text string) string {
 }
 
 func main() {
-	// 1. Fonction pour importer le document en format iramuteq
+	//1. Fonction pour importer le document en format iramuteq
 
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
