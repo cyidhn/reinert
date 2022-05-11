@@ -73,7 +73,7 @@ func main() {
 	//fmt.Println(tab_doc)
 
 	// Problème sur la taille des textes
-	documents := [...]string{"Le vote devrait vote rendu obligatoire", "si les vote blancs sont comptabilités", "C'est une nécessité démocratique pour notre", "une vote impérieuse doute et nulle"}
+	documents := [...]string{"Le vote devrait rendu obligatoire", "si les vote blancs sont comptabilités", "C'est une nécessité démocratique pour notre", "une vote impérieuse doute et nulle"}
 	matrix = matrice_terme_doc(documents[:])
 	fmt.Println(matrix)
 	// 3. Algo de CHD

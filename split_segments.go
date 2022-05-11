@@ -6,7 +6,7 @@ import (
 )
 
 var tab_doc []string
-var matrix []int
+var matrix [][]int
 
 func split_segments_words(words string, segment_size int) []string {
 	sep := strings.Fields(words)
@@ -18,20 +18,25 @@ func split_segments_words(words string, segment_size int) []string {
 	return tab_doc
 }
 
-func matrice_terme_doc(doc []string) []int {
+func matrice_terme_doc(doc []string) [][]int {
 	//1) Trouver une condition pour lire les termes qui possèdent le plus dans chaque document
 	//2) Combien de termes occurences on va écrire sur la matrice ?
 	var id_word = "vote"
+	var tab_count = []int{}
+
 	for i := range doc { //Pour chaque terme = ligne  !=document
-		sep := strings.Fields(doc[i])
-		for _, word := range sep { //Pour chaque document = colonne !=termes
-			count := strings.Count(doc[i], word) //Compte les mots par document => très embêtant pour régler la taille du texte
+		sep := strings.Fields(doc[i]) //Lire chaque token de mot
+		for _, word := range sep {    //Pour chaque document = colonne !=termes
+			count := strings.Count(doc[i], word) //Compter le nombre de mots pour chaque document
 			if word == id_word {
-				matrix = append(matrix, count) //En sortie: Lignes: Termes et Colonnes: Documents
+				tab_count = append(tab_count, count)
+				//En sortie: Lignes: Termes et Colonnes: Documents
 			}
 		}
 		fmt.Println(sep)
+		fmt.Println(tab_count)
 	}
+	matrix = append(matrix, tab_count)
 	//fmt.Println(doc)
 	return matrix
 }
