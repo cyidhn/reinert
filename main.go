@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -58,19 +56,26 @@ func preprocess(text string) string {
 func main() {
 	//1. Fonction pour importer le document en format iramuteq
 
-	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	//file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
+	//if err != nil {
+	//	fmt.Println(err)
+	//	os.Exit(1)
+	//}
 
-	new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés par des valeurs binaires
+	//new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés par des valeurs binaires
 
-	err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
-	if err2 != nil {
-		log.Fatal(err)
-	}
+	//err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
+	//if err2 != nil {
+	//	log.Fatal(err)
+	//}
 
+	//tab_doc = split_segments_words("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse", 10)
+	//fmt.Println(tab_doc)
+
+	// Problème sur la taille des textes
+	documents := [...]string{"Le vote devrait vote rendu obligatoire", "si les vote blancs sont comptabilités", "C'est une nécessité démocratique pour notre", "une vote impérieuse doute et nulle"}
+	matrix = matrice_terme_doc(documents[:])
+	fmt.Println(matrix)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
