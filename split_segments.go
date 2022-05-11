@@ -21,14 +21,14 @@ func split_segments_words(words string, segment_size int) []string {
 func matrice_terme_doc(doc []string) [][]int {
 	//1) Trouver une condition pour lire les termes qui possèdent le plus dans chaque document
 	//2) Combien de termes occurences on va écrire sur la matrice ?
-	var id_word = "vote"
+	var terme = "vote"
 	var tab_count = []int{}
 
-	for i := range doc { //Pour chaque terme = ligne  !=document
+	for i := range doc {
 		sep := strings.Fields(doc[i]) //Lire chaque token de mot
-		for _, word := range sep {    //Pour chaque document = colonne !=termes
+		for _, word := range sep {
 			count := strings.Count(doc[i], word) //Compter le nombre de mots pour chaque document
-			if word == id_word {
+			if word == terme {
 				tab_count = append(tab_count, count)
 				//En sortie: Lignes: Termes et Colonnes: Documents
 			}
