@@ -74,7 +74,8 @@ func main() {
 
 	// Problème sur la taille des textes
 	documents := [...]string{"Le vote devrait rendu obligatoire", "si le vote blanc est comptabilité", "C'est une nécessité démocratique est notre", "une vote impérieuse doute et nulle"}
-	matrix = matrix_term_doc(documents[:])
+	termes := []string{"vote", "une", "est", "obligatoire"}
+	matrix = matrix_term_doc(documents[:], termes)
 	fmt.Println(matrix)
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON

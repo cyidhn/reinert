@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -19,29 +18,29 @@ func split_segments_words(words string, segment_size int) []string {
 }
 
 //Trouver un moyen pour insérer plusieurs tableaux dans une matrice. Chaque tableau doit lire la présence/absence du terme
-func matrix_term_doc(doc []string) [][]int {
+func matrix_term_doc(doc []string, termes []string) [][]int {
 	var tab_binary_1 = []int{}
 	var tab_binary_2 = []int{}
 	var tab_binary_3 = []int{}
 	var tab_binary_4 = []int{}
 
 	for i := range doc {
-		if strings.Contains(doc[i], "vote") {
+		if strings.Contains(doc[i], termes[0]) {
 			tab_binary_1 = append(tab_binary_1, 1)
 		} else {
 			tab_binary_1 = append(tab_binary_1, 0)
 		}
-		if strings.Contains(doc[i], "une") {
+		if strings.Contains(doc[i], termes[1]) {
 			tab_binary_2 = append(tab_binary_2, 1)
 		} else {
 			tab_binary_2 = append(tab_binary_2, 0)
 		}
-		if strings.Contains(doc[i], "est") {
+		if strings.Contains(doc[i], termes[2]) {
 			tab_binary_3 = append(tab_binary_3, 1)
 		} else {
 			tab_binary_3 = append(tab_binary_3, 0)
 		}
-		if strings.Contains(doc[i], "obligatoire") {
+		if strings.Contains(doc[i], termes[3]) {
 			tab_binary_4 = append(tab_binary_4, 1)
 		} else {
 			tab_binary_4 = append(tab_binary_4, 0)
@@ -51,26 +50,8 @@ func matrix_term_doc(doc []string) [][]int {
 	return matrix
 }
 
-//La fonction ne marche pas
-func matrice_terme_doc(doc []string) [][]int {
-	var terme = "vote"
-	var tab_count = []int{}
-	//Il faut que les lignes: Termes et Colonnes: Documents
-	for i := range doc {
-		sep := strings.Fields(doc[i]) //Lire chaque token de mot
-		for _, word := range sep {
-			if word == terme {
-				tab_count = append(tab_count, 1)
-			} else {
-				tab_count = append(tab_count, 0)
-			}
-		}
-		fmt.Println(sep)
-		fmt.Println(tab_count)
-	}
-	matrix = append(matrix, tab_count)
-	//fmt.Println(doc)
-	return matrix
+func diviseur_kh2() {
+
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
