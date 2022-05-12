@@ -27,16 +27,19 @@ func matrice_terme_doc(doc []string) [][]int {
 	for i := range doc {
 		sep := strings.Fields(doc[i]) //Lire chaque token de mot
 		for _, word := range sep {
-			count := strings.Count(doc[i], word) //Compter le nombre de mots pour chaque document
 			if word == terme {
-				tab_count = append(tab_count, count)
+				tab_count = append(tab_count, 1)
 				//En sortie: Lignes: Termes et Colonnes: Documents
+			} else {
+				tab_count = append(tab_count, 0)
 			}
 		}
 		fmt.Println(sep)
 		fmt.Println(tab_count)
 	}
-	matrix = append(matrix, tab_count)
+	matrix = append(matrix, tab_count) //Trouver un moyen pour insérer plusieurs tableaux dans une matrice. Un tableau = Une document
+	//append(matrix,tab1,tab2,tab3,tabn...)
+
 	//fmt.Println(doc)
 	return matrix
 }
