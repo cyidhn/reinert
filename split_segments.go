@@ -18,18 +18,48 @@ func split_segments_words(words string, segment_size int) []string {
 	return tab_doc
 }
 
+//Trouver un moyen pour insérer plusieurs tableaux dans une matrice. Chaque tableau doit lire la présence/absence du terme
+func matrix_term_doc(doc []string) [][]int {
+	var tab_binary_1 = []int{}
+	var tab_binary_2 = []int{}
+	var tab_binary_3 = []int{}
+	var tab_binary_4 = []int{}
+
+	for i := range doc {
+		if strings.Contains(doc[i], "vote") {
+			tab_binary_1 = append(tab_binary_1, 1)
+		} else {
+			tab_binary_1 = append(tab_binary_1, 0)
+		}
+		if strings.Contains(doc[i], "une") {
+			tab_binary_2 = append(tab_binary_2, 1)
+		} else {
+			tab_binary_2 = append(tab_binary_2, 0)
+		}
+		if strings.Contains(doc[i], "est") {
+			tab_binary_3 = append(tab_binary_3, 1)
+		} else {
+			tab_binary_3 = append(tab_binary_3, 0)
+		}
+		if strings.Contains(doc[i], "obligatoire") {
+			tab_binary_4 = append(tab_binary_4, 1)
+		} else {
+			tab_binary_4 = append(tab_binary_4, 0)
+		}
+	}
+	matrix = append(matrix, tab_binary_1, tab_binary_2, tab_binary_3, tab_binary_4)
+	return matrix
+}
+
 func matrice_terme_doc(doc []string) [][]int {
-	//1) Trouver une condition pour lire les termes qui possèdent le plus dans chaque document
-	//2) Combien de termes occurences on va écrire sur la matrice ?
 	var terme = "vote"
 	var tab_count = []int{}
-
+	//Il faut que les lignes: Termes et Colonnes: Documents
 	for i := range doc {
 		sep := strings.Fields(doc[i]) //Lire chaque token de mot
 		for _, word := range sep {
 			if word == terme {
 				tab_count = append(tab_count, 1)
-				//En sortie: Lignes: Termes et Colonnes: Documents
 			} else {
 				tab_count = append(tab_count, 0)
 			}
@@ -37,9 +67,7 @@ func matrice_terme_doc(doc []string) [][]int {
 		fmt.Println(sep)
 		fmt.Println(tab_count)
 	}
-	matrix = append(matrix, tab_count) //Trouver un moyen pour insérer plusieurs tableaux dans une matrice. Un tableau = Une document
-	//append(matrix,tab1,tab2,tab3,tabn...)
-
+	matrix = append(matrix, tab_count)
 	//fmt.Println(doc)
 	return matrix
 }
