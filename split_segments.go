@@ -51,6 +51,7 @@ func matrix_term_doc(doc []string) [][]int {
 	return matrix
 }
 
+//La fonction ne marche pas
 func matrice_terme_doc(doc []string) [][]int {
 	var terme = "vote"
 	var tab_count = []int{}
