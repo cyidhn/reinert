@@ -6,6 +6,7 @@ import (
 
 var tab_doc []string
 var matrix [][]int
+var group_matrix [][]int
 
 func split_segments_words(words string, segment_size int) []string {
 	sep := strings.Fields(words)
@@ -50,7 +51,18 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 	return matrix
 }
 
-func diviseur_kh2() {
+func regroupement_doc() [][]int {
+	var group1 []int
+	var group2 []int
+	for element := range matrix {
+		group1 = append(group1, matrix[element][0]+matrix[element][1])
+		group2 = append(group2, matrix[element][2]+matrix[element][3])
+	}
+	group_matrix = append(group_matrix, group1, group2)
+	return group_matrix
+}
+
+func diviseur_khi2() {
 
 }
 

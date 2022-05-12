@@ -77,6 +77,7 @@ func main() {
 	termes := []string{"vote", "une", "est", "obligatoire"}
 	matrix = matrix_term_doc(documents[:], termes)
 	fmt.Println(matrix)
+	fmt.Println(regroupement_doc())
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
