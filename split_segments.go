@@ -8,8 +8,9 @@ var tab_doc []string
 var matrix [][]int
 var group_matrix [][]int
 
-func split_segments_words(words string, segment_size int) []string {
-	sep := strings.Fields(words)
+//Fonction qui permet de segmenter les mots pour un seul document
+func split_segments_words(doc string, segment_size int) []string {
+	sep := strings.Fields(doc)
 	for i, word := range sep {
 		if i < segment_size {
 			tab_doc = append(tab_doc, word)
@@ -18,7 +19,7 @@ func split_segments_words(words string, segment_size int) []string {
 	return tab_doc
 }
 
-//Trouver un moyen pour insérer plusieurs tableaux dans une matrice. Chaque tableau doit lire la présence/absence du terme
+//Création d'une matrice terme-document pour un exemple sur 4 documents et 4 termes
 func matrix_term_doc(doc []string, termes []string) [][]int {
 	var tab_binary_1 = []int{}
 	var tab_binary_2 = []int{}
@@ -51,6 +52,7 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 	return matrix
 }
 
+//Fonction regroupement des documents sur la matrice terme-documents
 func regroupement_doc() [][]int {
 	var group1 []int
 	var group2 []int
@@ -62,7 +64,10 @@ func regroupement_doc() [][]int {
 	return group_matrix
 }
 
-func diviseur_khi2() {
+func methode_reinert() {
+	//var N int //Nombre total de mots
+
+	group_matrix = regroupement_doc()
 
 }
 
