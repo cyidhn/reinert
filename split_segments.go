@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -68,8 +69,9 @@ func regroupement_doc() [][]int {
 func methode_reinert() {
 	var marge_rows []int
 	var marge_columns []int
-	var J1, J2, J3, J4 int
-	var marge_total int
+	var J1, J2, J3, J4, marge_total int
+	var tab_freq []float64
+	var freq1, freq2 float64
 
 	//Calcul marge ligne
 	for i, rows := range group_matrix {
@@ -102,6 +104,23 @@ func methode_reinert() {
 	fmt.Println("Marge de colonne:", marge_columns)
 	fmt.Println("Marge de lignes:", marge_rows)
 	fmt.Println("Marge total:", marge_total)
+
+	//Calcul de la fréquence pour chaque individu
+	for n := 0; n <= 3; n++ {
+		freq1 = ((float64(marge_columns[n] * marge_rows[0])) / float64(marge_total))
+		freq2 = ((float64(marge_columns[n] * marge_rows[1])) / float64(marge_total))
+		tab_freq = append(tab_freq, freq1, freq2)
+	}
+	fmt.Println("Tableaux de fréquence:", tab_freq)
+
+	//Calcul du chi2
+	var chi2 float64
+	chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
+	fmt.Println("Premier chi2:", chi2)
+	//Variables à utiliser:
+	//group_matrix => effectif_observés
+	//tab_freq => effectif_théorique
+
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
