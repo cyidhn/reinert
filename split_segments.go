@@ -78,7 +78,7 @@ func methode_reinert() {
 		marge_line = append(marge_line, rowsum)
 	}
 
-	// Problème de somme des colonnes sur le groupement de matrice
+	// Problème de somme des colonnes sur le groupement de matrice car les dimensions ne sont pas les mêmes
 	var k, l int
 	for k = 0; k <= 3; k++ {
 		colsum := 0
