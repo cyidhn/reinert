@@ -79,7 +79,6 @@ func main() {
 	fmt.Println(matrix)
 	fmt.Println(regroupement_doc())
 	methode_reinert()
-	//methode_reinert()
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }

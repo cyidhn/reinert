@@ -66,9 +66,10 @@ func regroupement_doc() [][]int {
 }
 
 func methode_reinert() {
-	var marge_line []int
-	var marge_column []int
+	var marge_rows []int
+	var marge_columns []int
 	var J1, J2, J3, J4 int
+	var marge_total int
 
 	//Calcul marge ligne
 	for i, rows := range group_matrix {
@@ -77,7 +78,7 @@ func methode_reinert() {
 			rowsum = rowsum + group_matrix[i][j]
 		}
 		//fmt.Println("Somme de la matrice ", sum)
-		marge_line = append(marge_line, rowsum)
+		marge_rows = append(marge_rows, rowsum)
 	}
 
 	//Calcul marge colonne (Le boucle for ne marche pas puisque la variable de la matrice group_matrix ne possède pas les mêmes dimensions)
@@ -85,10 +86,22 @@ func methode_reinert() {
 	J2 = group_matrix[0][1] + group_matrix[1][1]
 	J3 = group_matrix[0][2] + group_matrix[1][2]
 	J4 = group_matrix[0][3] + group_matrix[1][3]
-	//fmt.Println("Somme de la matrice ", sum)
-	marge_column = append(marge_column, J1, J2, J3, J4)
-	fmt.Println(marge_line)
-	fmt.Println(marge_column)
+	marge_columns = append(marge_columns, J1, J2, J3, J4)
+
+	sum_m_column := 0
+	sum_m_rows := 0
+	for k := range marge_columns {
+		sum_m_column += (marge_columns[k])
+	}
+
+	for l := range marge_rows {
+		sum_m_rows += (marge_rows[l])
+	}
+
+	marge_total = sum_m_column + sum_m_rows
+	fmt.Println("Marge de colonne:", marge_columns)
+	fmt.Println("Marge de lignes:", marge_rows)
+	fmt.Println("Marge total:", marge_total)
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
