@@ -68,7 +68,9 @@ func regroupement_doc() [][]int {
 func methode_reinert() {
 	var marge_line []int
 	var marge_column []int
+	var J1, J2, J3, J4 int
 
+	//Calcul marge ligne
 	for i, rows := range group_matrix {
 		rowsum := 0
 		for j := range rows {
@@ -78,16 +80,13 @@ func methode_reinert() {
 		marge_line = append(marge_line, rowsum)
 	}
 
-	// Problème de somme des colonnes sur le groupement de matrice car les dimensions ne sont pas les mêmes
-	var k, l int
-	for k = 0; k <= 3; k++ {
-		colsum := 0
-		for l = 0; l <= 3; l++ {
-			colsum = colsum + matrix[l][k]
-		}
-		//fmt.Println("Somme de la matrice ", sum)
-		marge_column = append(marge_column, colsum)
-	}
+	//Calcul marge colonne (Le boucle for ne marche pas puisque la variable de la matrice group_matrix ne possède pas les mêmes dimensions)
+	J1 = group_matrix[0][0] + group_matrix[1][0]
+	J2 = group_matrix[0][1] + group_matrix[1][1]
+	J3 = group_matrix[0][2] + group_matrix[1][2]
+	J4 = group_matrix[0][3] + group_matrix[1][3]
+	//fmt.Println("Somme de la matrice ", sum)
+	marge_column = append(marge_column, J1, J2, J3, J4)
 	fmt.Println(marge_line)
 	fmt.Println(marge_column)
 }
