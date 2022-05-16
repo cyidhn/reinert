@@ -116,6 +116,7 @@ func methode_reinert() {
 	var chi2 float64
 	chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
 	fmt.Println("Premier chi2:", chi2)
+
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
