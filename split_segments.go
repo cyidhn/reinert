@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -65,10 +66,30 @@ func regroupement_doc() [][]int {
 }
 
 func methode_reinert() {
-	//var N int //Nombre total de mots
+	var marge_line []int
+	var marge_column []int
 
-	group_matrix = regroupement_doc()
+	for i, rows := range group_matrix {
+		rowsum := 0
+		for j := range rows {
+			rowsum = rowsum + group_matrix[i][j]
+		}
+		//fmt.Println("Somme de la matrice ", sum)
+		marge_line = append(marge_line, rowsum)
+	}
 
+	// Problème de somme des colonnes sur le groupement de matrice
+	var k, l int
+	for k = 0; k <= 3; k++ {
+		colsum := 0
+		for l = 0; l <= 3; l++ {
+			colsum = colsum + matrix[l][k]
+		}
+		//fmt.Println("Somme de la matrice ", sum)
+		marge_column = append(marge_column, colsum)
+	}
+	fmt.Println(marge_line)
+	fmt.Println(marge_column)
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
