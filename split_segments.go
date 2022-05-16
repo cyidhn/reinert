@@ -79,11 +79,10 @@ func methode_reinert() {
 		for j := range rows {
 			rowsum = rowsum + group_matrix[i][j]
 		}
-		//fmt.Println("Somme de la matrice ", sum)
 		marge_rows = append(marge_rows, rowsum)
 	}
 
-	//Calcul marge colonne (Le boucle for ne marche pas puisque la variable de la matrice group_matrix ne possède pas les mêmes dimensions)
+	//Calcul marge colonnes/lignes (Le boucle for ne marche pas puisque la variable de la matrice group_matrix ne possède pas les mêmes dimensions)
 	J1 = group_matrix[0][0] + group_matrix[1][0]
 	J2 = group_matrix[0][1] + group_matrix[1][1]
 	J3 = group_matrix[0][2] + group_matrix[1][2]
@@ -117,10 +116,6 @@ func methode_reinert() {
 	var chi2 float64
 	chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
 	fmt.Println("Premier chi2:", chi2)
-	//Variables à utiliser:
-	//group_matrix => effectif_observés
-	//tab_freq => effectif_théorique
-
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
