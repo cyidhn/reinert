@@ -127,6 +127,7 @@ func calcul_chi2() {
 			tab_count = append(tab_count, chi2) //Trouver un moyen pour ajouter que les termes pour avoir le résultat du chi2
 		}
 	}
+	fmt.Println("Termes de chi2", tab_count)
 }
 
 func convert_group_matrix_array() []int {
