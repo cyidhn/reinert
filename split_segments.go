@@ -115,7 +115,6 @@ func tab_frequence() []float64 {
 	}
 	return tab_freq
 }
-
 func calcul_chi2() {
 	var chi2 float64
 	var tab_count []float64
@@ -127,10 +126,18 @@ func calcul_chi2() {
 			tab_count = append(tab_count, chi2) //Trouver un moyen pour ajouter que les termes pour avoir le résultat du chi2
 		}
 	}
-	count := 0.
-	for e := range tab_count {
-		count += (tab_count[e])
+}
+
+func convert_group_matrix_array() []int {
+	var i int
+	for i = 0; i <= 1; i++ {
+		colsum := 0
+		for j := 0; j <= 3; j++ {
+			colsum = colsum + group_matrix[i][j]
+			group_matrix_array = append(group_matrix_array, group_matrix[i][j])
+		}
 	}
+	return group_matrix_array
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
