@@ -120,7 +120,7 @@ func calcul_chi2() {
 	var chi2 float64
 	var tab_count []float64
 	for k := 0; k <= 7; k++ { //Tableau de fréquence
-		for j := 1; j <= 4; j++ { //Lire les colonnes du group_matrix
+		for j := 1; j < 5; j++ { //Lire les colonnes du group_matrix
 			for i := 0; i <= 1; i++ { // Lire les 2 lignes du group_matrix
 				chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme
 			}
