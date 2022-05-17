@@ -120,7 +120,6 @@ func tab_frequence() []float64 {
 func calcul_chi2() {
 	var terme_chi2 float64
 	var tab_count []float64
-	//Tableau de fréquence
 	for j := 1; j < 5; j++ { //Lire chaque colonne du group_matrix
 		for i := 0; i <= 1; i++ { // Lire la première ou la deuxième ligne du group_matrix
 			for k := 0; k <= 7; k++ { //Lire chaque élement de la fréquence de l'individu
