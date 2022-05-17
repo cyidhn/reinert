@@ -115,29 +115,22 @@ func tab_frequence() []float64 {
 	}
 	return tab_freq
 }
+
 func calcul_chi2() {
-	var list_terme []float64
-	for i := range group_matrix_array {
-		terme := 0.
-		for j := range tab_freq {
-			terme += math.Pow(float64(group_matrix_array[i])-tab_freq[j], 2) / tab_freq[j] //Calcul du terme
-		}
-		list_terme = append(list_terme, terme)
-	}
-	fmt.Println("Chi2", list_terme)
-
-}
-
-func convert_group_matrix_array() []int {
-	var i int
-	for i = 0; i <= 1; i++ {
-		colsum := 0
-		for j := 0; j <= 3; j++ {
-			colsum = colsum + group_matrix[i][j]
-			group_matrix_array = append(group_matrix_array, group_matrix[i][j])
+	var chi2 float64
+	var tab_count []float64
+	for k := 0; k <= 7; k++ { //Tableau de fréquence
+		for j := 1; j <= 4; j++ { //Lire les colonnes du group_matrix
+			for i := 0; i <= 1; i++ { // Lire les 2 lignes du group_matrix
+				chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme
+			}
+			tab_count = append(tab_count, chi2) //Trouver un moyen pour ajouter que les termes pour avoir le résultat du chi2
 		}
 	}
-	return group_matrix_array
+	count := 0.
+	for e := range tab_count {
+		count += (tab_count[e])
+	}
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte

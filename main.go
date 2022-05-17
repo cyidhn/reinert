@@ -79,7 +79,6 @@ func main() {
 	fmt.Println(matrix)
 	fmt.Println(regroupement_doc())
 	fmt.Println("Tableaux de fréquence des individus:", tab_frequence())
-	fmt.Println(convert_group_matrix_array())
 	calcul_chi2()
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
