@@ -116,6 +116,7 @@ func tab_frequence() []float64 {
 	return tab_freq
 }
 
+//Fonction tonjours en cours
 func calcul_chi2() {
 	var chi2 float64
 	var tab_count []float64
