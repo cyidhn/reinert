@@ -130,6 +130,7 @@ func calcul_chi2() {
 	fmt.Println("Termes de chi2", tab_count)
 }
 
+//Fonction de conversion que j'utilise pas pour l'instant
 func convert_group_matrix_array() []int {
 	var i int
 	for i = 0; i <= 1; i++ {
