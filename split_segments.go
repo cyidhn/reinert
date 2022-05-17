@@ -9,6 +9,7 @@ import (
 var tab_doc []string
 var matrix [][]int
 var group_matrix [][]int
+var tab_freq []float64
 
 //Fonction qui permet de segmenter les mots pour un seul document
 func split_segments_words(doc string, segment_size int) []string {
@@ -66,11 +67,11 @@ func regroupement_doc() [][]int {
 	return group_matrix
 }
 
-func methode_reinert() {
+// Méthode de Reinert
+func tab_frequence() []float64 {
 	var marge_rows []int
 	var marge_columns []int
 	var J1, J2, J3, J4, marge_total int
-	var tab_freq []float64
 	var freq1, freq2 float64
 
 	//Calcul marge ligne
@@ -106,17 +107,29 @@ func methode_reinert() {
 
 	//Calcul de la fréquence pour chaque individu
 	for n := 0; n <= 3; n++ {
-		freq1 = ((float64(marge_columns[n] * marge_rows[0])) / float64(marge_total))
-		freq2 = ((float64(marge_columns[n] * marge_rows[1])) / float64(marge_total))
+		freq1 = ((float64(marge_columns[n] * marge_rows[0])) / float64(marge_total)) //C1
+		freq2 = ((float64(marge_columns[n] * marge_rows[1])) / float64(marge_total)) //C2
 		tab_freq = append(tab_freq, freq1, freq2)
 	}
-	fmt.Println("Tableaux de fréquence:", tab_freq)
-
-	//Calcul du chi2
+	return tab_freq
+}
+func calcul_chi2() {
 	var chi2 float64
-	chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
-	fmt.Println("Premier chi2:", chi2)
-
+	var tab_count []float64
+	for k := 0; k <= 7; k++ { //Tableau de fréquence
+		for j := 1; j <= 4; j++ { //Lire les colonnes du group_matrix
+			for i := 0; i <= 1; i++ { // Lire les 2 lignes du group_matrix
+				chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme
+			}
+			tab_count = append(tab_count, chi2) //Trouver un moyen pour ajouter que les termes pour avoir le résultat du chi2
+		}
+	}
+	count := 0.
+	for e := range tab_count {
+		count += (tab_count[e])
+	}
+	//chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
+	fmt.Println("Premier chi2:", tab_count)
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte

@@ -78,7 +78,8 @@ func main() {
 	matrix = matrix_term_doc(documents[:], termes)
 	fmt.Println(matrix)
 	fmt.Println(regroupement_doc())
-	methode_reinert()
+	fmt.Println("Tableaux de fréquence des individus:", tab_frequence())
+	calcul_chi2()
 	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
