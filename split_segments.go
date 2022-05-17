@@ -9,6 +9,7 @@ import (
 var tab_doc []string
 var matrix [][]int
 var group_matrix [][]int
+var group_matrix_array []int
 var tab_freq []float64
 
 //Fonction qui permet de segmenter les mots pour un seul document
@@ -88,6 +89,7 @@ func tab_frequence() []float64 {
 	J2 = group_matrix[0][1] + group_matrix[1][1]
 	J3 = group_matrix[0][2] + group_matrix[1][2]
 	J4 = group_matrix[0][3] + group_matrix[1][3]
+
 	marge_columns = append(marge_columns, J1, J2, J3, J4)
 
 	sum_m_column := 0
@@ -114,22 +116,28 @@ func tab_frequence() []float64 {
 	return tab_freq
 }
 func calcul_chi2() {
-	var chi2 float64
-	var tab_count []float64
-	for k := 0; k <= 7; k++ { //Tableau de fréquence
-		for j := 1; j <= 4; j++ { //Lire les colonnes du group_matrix
-			for i := 0; i <= 1; i++ { // Lire les 2 lignes du group_matrix
-				chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme
-			}
-			tab_count = append(tab_count, chi2) //Trouver un moyen pour ajouter que les termes pour avoir le résultat du chi2
+	var list_terme []float64
+	for i := range group_matrix_array {
+		terme := 0.
+		for j := range tab_freq {
+			terme += math.Pow(float64(group_matrix_array[i])-tab_freq[j], 2) / tab_freq[j] //Calcul du terme
+		}
+		list_terme = append(list_terme, terme)
+	}
+	fmt.Println("Chi2", list_terme)
+
+}
+
+func convert_group_matrix_array() []int {
+	var i int
+	for i = 0; i <= 1; i++ {
+		colsum := 0
+		for j := 0; j <= 3; j++ {
+			colsum = colsum + group_matrix[i][j]
+			group_matrix_array = append(group_matrix_array, group_matrix[i][j])
 		}
 	}
-	count := 0.
-	for e := range tab_count {
-		count += (tab_count[e])
-	}
-	//chi2 = math.Pow(float64(group_matrix[0][0])-tab_freq[0], 2) / tab_freq[0]
-	fmt.Println("Premier chi2:", tab_count)
+	return group_matrix_array
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
