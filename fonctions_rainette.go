@@ -122,8 +122,8 @@ func calcul_chi2() {
 	var terme_chi2 float64
 	var tab_count []float64
 	var chi2 float64
-	for j := 1; j < 5; j++ { //Lire chaque colonne du group_matrix
-		for i := 0; i <= 1; i++ { // Lire la première ou la deuxième ligne du group_matrix
+	for i := 0; i <= 1; i++ { // Lire la première ou la deuxième ligne du group_matrix
+		for j := 1; j < 5; j++ { //Lire chaque colonne du group_matrix
 			for k := 0; k <= 7; k++ { //Lire chaque élement de la fréquence de l'individu
 				terme_chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
 				tab_count = append(tab_count, terme_chi2)                                         //Trouver un moyen pour récupérer QUE les termes calculés pour avoir le résultat chi2
