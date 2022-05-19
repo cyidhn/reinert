@@ -102,6 +102,7 @@ func tab_frequence() []float64 {
 		sum_m_rows += (marge_rows[l])
 	}
 
+	//Tableau de contingence
 	marge_total = sum_m_column + sum_m_rows
 	fmt.Println("Marge de colonne:", marge_columns)
 	fmt.Println("Marge de lignes:", marge_rows)
