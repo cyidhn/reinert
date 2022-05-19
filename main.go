@@ -76,8 +76,8 @@ func main() {
 	documents := [...]string{"Le vote devrait rendu obligatoire", "si le vote blanc est comptabilité", "C'est une nécessité démocratique est notre", "une vote impérieuse doute et nulle"}
 	termes := []string{"vote", "une", "est", "obligatoire"}
 	matrix = matrix_term_doc(documents[:], termes)
-	fmt.Println(matrix)
-	fmt.Println(regroupement_doc())
+	fmt.Println("Matrice Terme document:", matrix)
+	fmt.Println("Matrice de regroupement des documents:", regroupement_doc())
 	fmt.Println("Tableaux de fréquence des individus:", tab_frequence())
 	calcul_chi2()
 	// 3. Algo de CHD
