@@ -127,8 +127,9 @@ func calcul_chi2() {
 		if i == 0 {
 			for k := range tab_freq[:2] { //Lire chaque élement de la fréquence de l'individu
 				ligne1_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
-				tab_count = append(tab_count, ligne1_chi2)
+
 			}
+			tab_count = append(tab_count, ligne1_chi2)
 		}
 
 		//if i == 1 {
