@@ -119,20 +119,26 @@ func tab_frequence() []float64 {
 
 //Fonction tonjours en cours
 func calcul_chi2() {
-	var terme_chi2 float64
+	var ligne1_chi2 float64
 	var tab_count []float64
-	var chi2 float64
-	for i := 0; i <= 1; i++ { // Lire la première ou la deuxième ligne du group_matrix
-		for j := 1; j < 5; j++ { //Lire chaque colonne du group_matrix
-			for k := 0; k <= 7; k++ { //Lire chaque élement de la fréquence de l'individu
-				terme_chi2 = math.Pow(float64(group_matrix[i][j-1])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
-				tab_count = append(tab_count, terme_chi2)                                         //Trouver un moyen pour récupérer QUE les termes calculés pour avoir le résultat chi2
+	var i int
+
+	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
+		if i == 0 {
+			for k := range tab_freq[:2] { //Lire chaque élement de la fréquence de l'individu
+				ligne1_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
+				tab_count = append(tab_count, ligne1_chi2)
 			}
 		}
+
+		//if i == 1 {
+		//	for k := range tab_freq[:0] {
+		//		ligne2_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k]
+		//	}
+		//}
+
 	}
-	chi2 = tab_count[0] + tab_count[8] + tab_count[2] + tab_count[10]*3 + tab_count[14] + tab_count[22]
 	fmt.Println("Termes de chi2", tab_count)
-	fmt.Println("Chi2=", chi2)
 }
 
 //Fonction de conversion que j'utilise pas pour l'instant
