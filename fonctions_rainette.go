@@ -122,23 +122,21 @@ func calcul_chi2() {
 	var ligne1_chi2 float64
 	var tab_count []float64
 	var i int
-
 	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
 		if i == 0 {
-			for k := range tab_freq[:2] { //Lire chaque élement de la fréquence de l'individu
+			for k := range tab_freq[0:2:6] { //Lire chaque élement de la fréquence de l'individu
 				ligne1_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
-
 			}
-			tab_count = append(tab_count, ligne1_chi2)
 		}
-
-		//if i == 1 {
-		//	for k := range tab_freq[:0] {
-		//		ligne2_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k]
-		//	}
-		//}
-
+		fmt.Println("Terme", ligne1_chi2)
+		tab_count = append(tab_count, ligne1_chi2)
 	}
+
+	//if i == 1 {
+	//	for k := range tab_freq[:0] {
+	//		ligne2_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k]
+	//	}
+	//}
 	fmt.Println("Termes de chi2", tab_count)
 }
 
