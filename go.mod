@@ -9,4 +9,5 @@ require (
 	golang.org/x/text v0.3.7
 	gonum.org/v1/gonum v0.11.0 // indirect
 	gonum.org/v1/plot v0.11.0 // indirect
+
 )
