@@ -54,8 +54,7 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 
 //Fonction regroupement des documents sur la matrice terme-documents
 func regroupement_doc(matrix [][]int) [][]int {
-	var group1 []int
-	var group2 []int
+	var group1, group2 []int
 	var group_matrix [][]int
 	for element := range matrix {
 		group1 = append(group1, matrix[element][0]+matrix[element][1])
@@ -67,12 +66,10 @@ func regroupement_doc(matrix [][]int) [][]int {
 
 // Méthode de Reinert
 func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
-	var marge_rows []int
-	var marge_columns []int
+	var marge_rows, marge_columns []int
 	var J1, J2, J3, J4, marge_total int
 	var freq1, freq2 float64
-	var tab_freq1 []float64
-	var tab_freq2 []float64
+	var tab_freq1, tab_freq2 []float64
 
 	//Calcul marge ligne
 	for i, rows := range group_matrix {
@@ -119,11 +116,9 @@ func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
 
 //Fonction calcul de chi2 pour deux classes UNIQUEMENT
 func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64) float64 {
-	var ligne1_chi2, ligne2_chi2 float64
-	var tab_count []float64
-	var tab_count_2 []float64
-	var tab_termes_chi2 []float64
-	var result_chi2 float64
+	var ligne1_chi2, ligne2_chi2, result_chi2 float64
+	var tab_count, tab_count_2, tab_termes_chi2 []float64
+
 	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
 		//Calcul première ligne des termes chi2
 		for k := range tab_freq1 {
@@ -168,5 +163,4 @@ func convert_group_matrix_array(group_matrix [][]int) []int {
 }
 
 //2) Développer une fonction pour appliquer le découpage de la segmentation du texte
-//3) Calcul et traitement de la matrice termes-documents (dtm)
 //4) Application de l'algorithme de Rainette (Clustering des mots les plus approchés dans chaque segmentation) CHD
