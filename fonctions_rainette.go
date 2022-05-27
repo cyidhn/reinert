@@ -66,12 +66,13 @@ func regroupement_doc(matrix [][]int) [][]int {
 }
 
 // Méthode de Reinert
-func tab_frequence(group_matrix [][]int) []float64 {
+func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
 	var marge_rows []int
 	var marge_columns []int
 	var J1, J2, J3, J4, marge_total int
 	var freq1, freq2 float64
-	var tab_freq []float64
+	var tab_freq1 []float64
+	var tab_freq2 []float64
 
 	//Calcul marge ligne
 	for i, rows := range group_matrix {
@@ -110,32 +111,36 @@ func tab_frequence(group_matrix [][]int) []float64 {
 	for n := 0; n <= 3; n++ {
 		freq1 = ((float64(marge_columns[n] * marge_rows[0])) / float64(marge_total)) //C1
 		freq2 = ((float64(marge_columns[n] * marge_rows[1])) / float64(marge_total)) //C2
-		tab_freq = append(tab_freq, freq1, freq2)
+		tab_freq1 = append(tab_freq1, freq1)
+		tab_freq2 = append(tab_freq2, freq2)
 	}
-	return tab_freq
+	return tab_freq1, tab_freq2
 }
 
-//Fonction tonjours en cours
-func calcul_chi2(group_matrix [][]int, tab_freq []float64) {
-	var ligne1_chi2 float64
+//Fonction calcul de chaque terme de chi2 toujours en cours
+func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64) {
+	var ligne1_chi2, ligne2_chi2 float64
 	var tab_count []float64
-	var i int
+	var tab_count_2 []float64
+	var tab_termes_chi2 []float64
 	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
-		if i == 0 {
-			for k := range tab_freq[0:2:6] { //Lire chaque élement de la fréquence de l'individu
-				ligne1_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k] //Calcul du terme chi2
-			}
+		for k := range tab_freq1 { //Lire chaque élement de la fréquence de l'individu de la première classe
+			ligne1_chi2 = math.Pow(float64(group_matrix[0][j])-tab_freq1[k], 2) / tab_freq1[k] //Calcul du terme chi2
+			tab_count = append(tab_count, ligne1_chi2)
 		}
-		fmt.Println("Terme", ligne1_chi2)
-		tab_count = append(tab_count, ligne1_chi2)
-	}
 
-	//if i == 1 {
-	//	for k := range tab_freq[:0] {
-	//		ligne2_chi2 = math.Pow(float64(group_matrix[i][j])-tab_freq[k], 2) / tab_freq[k]
-	//	}
-	//}
-	fmt.Println("Termes de chi2", tab_count)
+		for k := range tab_freq2 { //Lire chaque élement de la fréquence de l'individu de la deuxième classe
+			ligne2_chi2 = math.Pow(float64(group_matrix[1][j])-tab_freq2[k], 2) / tab_freq2[k] //Calcul du terme chi2
+			tab_count_2 = append(tab_count_2, ligne2_chi2)
+		}
+	}
+	fmt.Println("Termes de chi2 première classe", tab_count)
+	fmt.Println("Termes de chi2 deuxième classe", tab_count_2)
+
+	for i := 0; i <= 15; i += 5 {
+		tab_termes_chi2 = append(tab_termes_chi2, tab_count[i])
+	}
+	fmt.Println("Termes de chi2 première classe", tab_termes_chi2)
 }
 
 //Fonction de conversion que j'utilise pas pour l'instant

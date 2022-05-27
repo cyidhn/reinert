@@ -68,18 +68,18 @@ func main() {
 	//	log.Fatal(err)
 	//}
 
+	// 2. Algo de CHD
 	//tab_doc = split_segments_words("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse", 10)
 	//fmt.Println(tab_doc)
 
 	documents := [...]string{"Le vote devrait rendu obligatoire", "si le vote blanc est comptabilité", "C'est une nécessité démocratique est notre", "une vote impérieuse doute et nulle"}
 	termes := []string{"vote", "une", "est", "obligatoire"}
-	var read_matrix [][]int
-	read_matrix = matrix_term_doc(documents[:], termes)
+	var read_matrix = matrix_term_doc(documents[:], termes)
+	var tab_freq_1, tab_freq_2 = tab_frequence(regroupement_doc(read_matrix))
 	fmt.Println("Matrice Terme document:", read_matrix)
 	fmt.Println("Matrice de regroupement des documents:", regroupement_doc(read_matrix))
-	fmt.Println("Tableaux de fréquence des individus:", tab_frequence(regroupement_doc(read_matrix)))
-	calcul_chi2(regroupement_doc(read_matrix), tab_frequence(regroupement_doc(read_matrix)))
+	fmt.Println("Classe 1 fréquence:", tab_freq_1, "classe 2 fréquence :", tab_freq_2)
+	calcul_chi2(regroupement_doc(read_matrix), tab_freq_1, tab_freq_2)
 
-	// 3. Algo de CHD
 	// 4. Retourne les resultats en JSON
 }
