@@ -6,14 +6,9 @@ import (
 	"strings"
 )
 
-var tab_doc []string
-var matrix [][]int
-var group_matrix [][]int
-var group_matrix_array []int
-var tab_freq []float64
-
 //Fonction qui permet de segmenter les mots pour un seul document
 func split_segments_words(doc string, segment_size int) []string {
+	var tab_doc []string
 	sep := strings.Fields(doc)
 	for i, word := range sep {
 		if i < segment_size {
@@ -25,6 +20,7 @@ func split_segments_words(doc string, segment_size int) []string {
 
 //Création d'une matrice terme-document pour un exemple sur 4 documents et 4 termes
 func matrix_term_doc(doc []string, termes []string) [][]int {
+	var matrix [][]int
 	var tab_binary_1 = []int{}
 	var tab_binary_2 = []int{}
 	var tab_binary_3 = []int{}
@@ -57,9 +53,10 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 }
 
 //Fonction regroupement des documents sur la matrice terme-documents
-func regroupement_doc() [][]int {
+func regroupement_doc(matrix [][]int) [][]int {
 	var group1 []int
 	var group2 []int
+	var group_matrix [][]int
 	for element := range matrix {
 		group1 = append(group1, matrix[element][0]+matrix[element][1])
 		group2 = append(group2, matrix[element][2]+matrix[element][3])
@@ -69,11 +66,12 @@ func regroupement_doc() [][]int {
 }
 
 // Méthode de Reinert
-func tab_frequence() []float64 {
+func tab_frequence(group_matrix [][]int) []float64 {
 	var marge_rows []int
 	var marge_columns []int
 	var J1, J2, J3, J4, marge_total int
 	var freq1, freq2 float64
+	var tab_freq []float64
 
 	//Calcul marge ligne
 	for i, rows := range group_matrix {
@@ -118,7 +116,7 @@ func tab_frequence() []float64 {
 }
 
 //Fonction tonjours en cours
-func calcul_chi2() {
+func calcul_chi2(group_matrix [][]int, tab_freq []float64) {
 	var ligne1_chi2 float64
 	var tab_count []float64
 	var i int
@@ -141,8 +139,9 @@ func calcul_chi2() {
 }
 
 //Fonction de conversion que j'utilise pas pour l'instant
-func convert_group_matrix_array() []int {
+func convert_group_matrix_array(group_matrix [][]int) []int {
 	var i int
+	var group_matrix_array []int
 	for i = 0; i <= 1; i++ {
 		colsum := 0
 		for j := 0; j <= 3; j++ {
