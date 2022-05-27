@@ -117,30 +117,40 @@ func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
 	return tab_freq1, tab_freq2
 }
 
-//Fonction calcul de chaque terme de chi2 toujours en cours
-func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64) {
+//Fonction calcul de chi2 pour deux classes UNIQUEMENT
+func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64) float64 {
 	var ligne1_chi2, ligne2_chi2 float64
 	var tab_count []float64
 	var tab_count_2 []float64
 	var tab_termes_chi2 []float64
+	var result_chi2 float64
 	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
-		for k := range tab_freq1 { //Lire chaque élement de la fréquence de l'individu de la première classe
+		//Calcul première ligne des termes chi2
+		for k := range tab_freq1 {
 			ligne1_chi2 = math.Pow(float64(group_matrix[0][j])-tab_freq1[k], 2) / tab_freq1[k] //Calcul du terme chi2
 			tab_count = append(tab_count, ligne1_chi2)
 		}
-
+		//Calcul la deuxième ligne des termes chi2
 		for k := range tab_freq2 { //Lire chaque élement de la fréquence de l'individu de la deuxième classe
 			ligne2_chi2 = math.Pow(float64(group_matrix[1][j])-tab_freq2[k], 2) / tab_freq2[k] //Calcul du terme chi2
 			tab_count_2 = append(tab_count_2, ligne2_chi2)
 		}
 	}
-	fmt.Println("Termes de chi2 première classe", tab_count)
-	fmt.Println("Termes de chi2 deuxième classe", tab_count_2)
+	//fmt.Println("Termes calculés première classe", tab_count)
+	//fmt.Println("Termes calculés deuxième classe", tab_count_2)
 
+	//Regroupement les termes calculés de chi2
 	for i := 0; i <= 15; i += 5 {
-		tab_termes_chi2 = append(tab_termes_chi2, tab_count[i])
+		tab_termes_chi2 = append(tab_termes_chi2, tab_count[i], tab_count_2[i])
 	}
-	fmt.Println("Termes de chi2 première classe", tab_termes_chi2)
+	//fmt.Println("Termes de chi2", tab_termes_chi2)
+
+	//Résultat final de chi2
+	result_chi2 = 0
+	for l := range tab_termes_chi2 {
+		result_chi2 += (tab_termes_chi2[l])
+	}
+	return result_chi2
 }
 
 //Fonction de conversion que j'utilise pas pour l'instant

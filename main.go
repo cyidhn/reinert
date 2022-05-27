@@ -79,7 +79,7 @@ func main() {
 	fmt.Println("Matrice Terme document:", read_matrix)
 	fmt.Println("Matrice de regroupement des documents:", regroupement_doc(read_matrix))
 	fmt.Println("Classe 1 fréquence:", tab_freq_1, "classe 2 fréquence :", tab_freq_2)
-	calcul_chi2(regroupement_doc(read_matrix), tab_freq_1, tab_freq_2)
+	fmt.Println("Résultat du chi2=", calcul_chi2(regroupement_doc(read_matrix), tab_freq_1, tab_freq_2))
 
 	// 4. Retourne les resultats en JSON
 }
