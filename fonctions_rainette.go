@@ -98,13 +98,13 @@ func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
 		sum_m_rows += (marge_rows[l])
 	}
 
-	//Tableau de contingence
+	//Tableau de contingence ou test d'indépendance
 	marge_total = sum_m_column + sum_m_rows
 	fmt.Println("Marge de colonne:", marge_columns)
 	fmt.Println("Marge de lignes:", marge_rows)
 	fmt.Println("Marge total:", marge_total)
 
-	//Calcul de la fréquence pour chaque individu
+	//Calcul du profil lignes et colonnes pour chaque classe
 	for n := 0; n <= 3; n++ {
 		freq1 = ((float64(marge_columns[n] * marge_rows[0])) / float64(marge_total)) //C1
 		freq2 = ((float64(marge_columns[n] * marge_rows[1])) / float64(marge_total)) //C2
@@ -131,8 +131,8 @@ func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64)
 			tab_count_2 = append(tab_count_2, ligne2_chi2)
 		}
 	}
-	fmt.Println("Termes calculés première classe", tab_count)
-	fmt.Println("Termes calculés deuxième classe", tab_count_2)
+	//fmt.Println("Termes calculés première classe", tab_count)
+	//fmt.Println("Termes calculés deuxième classe", tab_count_2)
 
 	//Regroupement les termes calculés de chi2
 	for i := 0; i <= 15; i += 5 {
