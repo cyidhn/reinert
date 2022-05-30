@@ -64,6 +64,10 @@ func regroupement_doc(matrix [][]int) [][]int {
 	return group_matrix
 }
 
+func switch_doc() {
+
+}
+
 // Méthode de Reinert
 func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
 	var marge_rows, marge_columns []int
@@ -122,12 +126,12 @@ func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64)
 	for j := 0; j <= 3; j++ { //Lire chaque colonne du group_matrix
 		//Calcul première ligne des termes chi2
 		for k := range tab_freq1 {
-			ligne1_chi2 = math.Pow(float64(group_matrix[0][j])-tab_freq1[k], 2) / tab_freq1[k] //Calcul du terme chi2
+			ligne1_chi2 = math.Pow(float64(group_matrix[0][j])-tab_freq1[k], 2) / tab_freq1[k]
 			tab_count = append(tab_count, ligne1_chi2)
 		}
 		//Calcul la deuxième ligne des termes chi2
-		for k := range tab_freq2 { //Lire chaque élement de la fréquence de l'individu de la deuxième classe
-			ligne2_chi2 = math.Pow(float64(group_matrix[1][j])-tab_freq2[k], 2) / tab_freq2[k] //Calcul du terme chi2
+		for k := range tab_freq2 {
+			ligne2_chi2 = math.Pow(float64(group_matrix[1][j])-tab_freq2[k], 2) / tab_freq2[k]
 			tab_count_2 = append(tab_count_2, ligne2_chi2)
 		}
 	}
