@@ -72,7 +72,7 @@ func main() {
 	//tab_doc = split_segments_words("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse", 10)
 	//fmt.Println(tab_doc)
 
-	documents := [...]string{"Le vote devrait rendu obligatoire", "si le vote blanc est comptabilité", "C'est une nécessité démocratique est notre", "une vote impérieuse doute et nulle"}
+	documents := [...]string{"Le vote devrait rendu  une obligatoire !", "si le blanc soit comptabilité", "C'est nécesssaire pour notre démocratie !", "une vote impérieuse doute et nulle"}
 	termes := []string{"vote", "une", "est", "obligatoire"}
 	var read_matrix = matrix_term_doc(documents[:], termes)
 	var tab_freq_1, tab_freq_2 = tab_frequence(regroupement_doc(read_matrix))

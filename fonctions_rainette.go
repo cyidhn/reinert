@@ -57,8 +57,8 @@ func regroupement_doc(matrix [][]int) [][]int {
 	var group1, group2 []int
 	var group_matrix [][]int
 	for element := range matrix {
-		group1 = append(group1, matrix[element][0]+matrix[element][1])
-		group2 = append(group2, matrix[element][2]+matrix[element][3])
+		group1 = append(group1, matrix[0][element]+matrix[1][element])
+		group2 = append(group2, matrix[2][element]+matrix[3][element])
 	}
 	group_matrix = append(group_matrix, group1, group2)
 	return group_matrix
@@ -131,20 +131,21 @@ func calcul_chi2(group_matrix [][]int, tab_freq1 []float64, tab_freq2 []float64)
 			tab_count_2 = append(tab_count_2, ligne2_chi2)
 		}
 	}
-	//fmt.Println("Termes calculés première classe", tab_count)
-	//fmt.Println("Termes calculés deuxième classe", tab_count_2)
+	fmt.Println("Termes calculés première classe", tab_count)
+	fmt.Println("Termes calculés deuxième classe", tab_count_2)
 
 	//Regroupement les termes calculés de chi2
 	for i := 0; i <= 15; i += 5 {
 		tab_termes_chi2 = append(tab_termes_chi2, tab_count[i], tab_count_2[i])
 	}
-	//fmt.Println("Termes de chi2", tab_termes_chi2)
+	fmt.Println("Termes de chi2", tab_termes_chi2)
 
 	//Résultat final de chi2
 	result_chi2 = 0
 	for l := range tab_termes_chi2 {
 		result_chi2 += (tab_termes_chi2[l])
 	}
+
 	return result_chi2
 }
 
