@@ -6,6 +6,12 @@ import (
 	"strings"
 )
 
+/*
+Sources de recherche:
+https://juba.github.io/rainette/articles/algorithmes.html
+https://dumas.ccsd.cnrs.fr/dumas-02372217/document#:~:text=La%20m%C3%A9thode%20de%20Reinert%20(1983,de%20ces%20lois%20de%20distribution.
+*/
+
 //Fonction qui permet de segmenter les mots pour un seul document
 func split_segments_words(doc string, segment_size int) []string {
 	var tab_doc []string
@@ -69,7 +75,9 @@ func regroupement_doc(matrix [][]int) [][]int {
 // Exemple: matrice (3*3) on retourne une liste D[1, 2, 3]
 
 /*
-func order_doc(m [][]int) (int) {
+func switch_docs(matrix [][]int, max_chi2 int) []int {
+	var indices = int[4]{0, 1, 2, 3}
+	var group1, group2 []int
 }
 */
 
