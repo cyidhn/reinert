@@ -77,7 +77,6 @@ func main() {
 	var read_matrix [][]int
 	doc := [...]string{"Le vote devrait rendu obligatoire !", "si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle"}
 
-	var list_chi2 []float64
 	termes := []string{"vote", "une", "est", "obligatoire"}
 
 	read_matrix = matrix_term_doc(doc[:], termes)
@@ -88,7 +87,6 @@ func main() {
 
 	//fmt.Println("Classe 1 fréquence:", tab_freq_1, "classe 2 fréquence :", tab_freq_2)
 	fmt.Println("chi2=", chi2)
-	fmt.Println("Liste des valeurs chi2:", list_chi2)
 
 	// 4. Retourne les resultats en JSON
 }

@@ -64,9 +64,14 @@ func regroupement_doc(matrix [][]int) [][]int {
 	return group_matrix
 }
 
-func switch_doc() {
+//Entrée en argument m la matrice (terme document ???)
+//Sortie une liste représente les documents de l'indice DES LIGNES
+// Exemple: matrice (3*3) on retourne une liste D[1, 2, 3]
 
+/*
+func order_doc(m [][]int) (int) {
 }
+*/
 
 // Méthode de Reinert
 func tab_frequence(group_matrix [][]int) ([]float64, []float64) {
