@@ -56,6 +56,21 @@ func preprocess(text string) string {
 
 func main() {
 	//Segmentation des corpus à partir d'un fichier Iramuteq
+	/*
+		var testDict string
+		seg, _ := gse.NewEmbed("zh, word 20 n"+testDict, "en")
+		seg.LoadStopEmbed()
+		text1 := "Bonjour à tous ! Je m'appelle Vincent TRAN ! J'ai 23 ans ! Je suis étudiant en Master en IA !"
+		s1 := seg.Cut(text1, true)
+		fmt.Println(s1)
+		fmt.Println("trim: ", seg.Trim(s1))
+		fmt.Println("stop: ", seg.Stop(s1))
+		fmt.Println(seg.String(text1, true))
+
+		segments := seg.Segment([]byte(text1))
+		fmt.Println(gse.ToString(segments))
+
+	*/
 
 	//1. Partie sur le traitement de pre-processing
 
