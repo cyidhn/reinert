@@ -12,26 +12,10 @@ https://juba.github.io/rainette/articles/algorithmes.html
 https://dumas.ccsd.cnrs.fr/dumas-02372217/document#:~:text=La%20m%C3%A9thode%20de%20Reinert%20(1983,de%20ces%20lois%20de%20distribution.
 */
 
-//Fonction qui permet de segmenter les mots pour un seul document
-func split_segments_words(doc string, segment_size int) []string {
-	var tab_doc []string
-	sep := strings.Fields(doc)
-	for i, word := range sep {
-		if i < segment_size {
-			tab_doc = append(tab_doc, word)
-		}
-	}
-	return tab_doc
-}
-
 //Création d'une matrice terme-document pour un exemple sur 4 documents et 4 termes
 func matrix_term_doc(doc []string, termes []string) [][]int {
 	var matrix [][]int
-	var tab_binary_1 = []int{}
-	var tab_binary_2 = []int{}
-	var tab_binary_3 = []int{}
-	var tab_binary_4 = []int{}
-	var tab_binary_5 = []int{}
+	var tab_binary_1, tab_binary_2, tab_binary_3, tab_binary_4, tab_binary_5 []int
 
 	for i := 0; i <= 3; i++ {
 		if strings.Contains(doc[0], termes[i]) {
@@ -65,6 +49,7 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 }
 
 //Fonction regroupement des documents sur la matrice terme-documents
+//Partition en deux classes
 func regroupement_doc(matrix [][]int) [][]int {
 	var group1, group2 []int
 	var group_matrix [][]int
@@ -186,5 +171,16 @@ func convert_group_matrix_array(group_matrix [][]int) []int {
 	return group_matrix_array
 }
 
-//2) Développer une fonction pour appliquer le découpage de la segmentation du texte
+//Fonction qui permet de segmenter les mots pour un seul document
+func split_segments_words(doc string, segment_size int) []string {
+	var tab_doc []string
+	sep := strings.Fields(doc)
+	for i, word := range sep {
+		if i < segment_size {
+			tab_doc = append(tab_doc, word)
+		}
+	}
+	return tab_doc
+}
+
 //4) Application de l'algorithme de Rainette (Clustering des mots les plus approchés dans chaque segmentation) CHD

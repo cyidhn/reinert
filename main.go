@@ -8,6 +8,8 @@ import (
 	"time"
 	"unicode"
 
+	_ "embed"
+
 	"github.com/bbalet/stopwords"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
@@ -53,7 +55,10 @@ func preprocess(text string) string {
 }
 
 func main() {
-	//1. Partie sur le traitement
+	//Segmentation des corpus à partir d'un fichier Iramuteq
+
+	//1. Partie sur le traitement de pre-processing
+
 	/*
 		file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 		if err != nil {
@@ -63,20 +68,20 @@ func main() {
 
 		new_file := []byte(preprocess(string(file))) //Ecrire l'intégralité du texte des mots lemmatisés par des valeurs binaires
 
-		err2 := ioutil.WriteFile("./corpus/text_lematize.txt", new_file, 0)
+		err2 := ioutil.WriteFile("./corpus/text_lematize_3.txt", new_file, 0)
 		if err2 != nil {
 			log.Fatal(err)
 		}
+
+		fmt.Println(string(new_file))
+
+		//tab_doc = split_segments_words("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse", 10)
+		//fmt.Println(tab_doc)
+
 	*/
-
-	// 2. Algo de CHD
-
-	//tab_doc = split_segments_words("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse", 10)
-	//fmt.Println(tab_doc)
 
 	var read_matrix [][]int
 	doc := [...]string{"si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle", "obligatoire une", "Le vote devrait rendu  obligatoire !"}
-
 	termes := []string{"vote", "une", "est", "obligatoire"}
 
 	read_matrix = matrix_term_doc(doc[:], termes)
@@ -87,6 +92,9 @@ func main() {
 
 	//fmt.Println("Classe 1 fréquence:", tab_freq_1, "classe 2 fréquence :", tab_freq_2)
 	fmt.Println("chi2=", chi2)
+
+	// Maximisation de chi2 pour trouver le regroupement final
+	// Algo de CHD
 
 	// 4. Retourne les resultats en JSON
 }
