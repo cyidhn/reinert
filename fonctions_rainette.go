@@ -31,30 +31,36 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 	var tab_binary_2 = []int{}
 	var tab_binary_3 = []int{}
 	var tab_binary_4 = []int{}
+	var tab_binary_5 = []int{}
 
-	for i := range doc {
-		if strings.Contains(doc[i], termes[0]) {
+	for i := 0; i <= 3; i++ {
+		if strings.Contains(doc[0], termes[i]) {
 			tab_binary_1 = append(tab_binary_1, 1)
 		} else {
 			tab_binary_1 = append(tab_binary_1, 0)
 		}
-		if strings.Contains(doc[i], termes[1]) {
+		if strings.Contains(doc[1], termes[i]) {
 			tab_binary_2 = append(tab_binary_2, 1)
 		} else {
 			tab_binary_2 = append(tab_binary_2, 0)
 		}
-		if strings.Contains(doc[i], termes[2]) {
+		if strings.Contains(doc[2], termes[i]) {
 			tab_binary_3 = append(tab_binary_3, 1)
 		} else {
 			tab_binary_3 = append(tab_binary_3, 0)
 		}
-		if strings.Contains(doc[i], termes[3]) {
+		if strings.Contains(doc[3], termes[i]) {
 			tab_binary_4 = append(tab_binary_4, 1)
 		} else {
 			tab_binary_4 = append(tab_binary_4, 0)
 		}
+		if strings.Contains(doc[4], termes[i]) {
+			tab_binary_5 = append(tab_binary_5, 1)
+		} else {
+			tab_binary_5 = append(tab_binary_5, 0)
+		}
 	}
-	matrix = append(matrix, tab_binary_1, tab_binary_2, tab_binary_3, tab_binary_4)
+	matrix = append(matrix, tab_binary_1, tab_binary_2, tab_binary_3, tab_binary_4, tab_binary_5)
 	return matrix
 }
 
@@ -62,9 +68,9 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 func regroupement_doc(matrix [][]int) [][]int {
 	var group1, group2 []int
 	var group_matrix [][]int
-	for element := range matrix {
+	for element := 0; element <= 3; element++ {
 		group1 = append(group1, matrix[0][element]+matrix[1][element])
-		group2 = append(group2, matrix[2][element]+matrix[3][element])
+		group2 = append(group2, matrix[2][element]+matrix[3][element]+matrix[4][element])
 	}
 	group_matrix = append(group_matrix, group1, group2)
 	return group_matrix

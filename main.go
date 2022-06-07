@@ -75,7 +75,7 @@ func main() {
 	//fmt.Println(tab_doc)
 
 	var read_matrix [][]int
-	doc := [...]string{"Le vote devrait rendu obligatoire !", "si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle"}
+	doc := [...]string{"si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle", "obligatoire une", "Le vote devrait rendu  obligatoire !"}
 
 	termes := []string{"vote", "une", "est", "obligatoire"}
 
