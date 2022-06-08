@@ -55,7 +55,7 @@ func preprocess(text string) string {
 }
 
 func main() {
-	//Segmentation des corpus à partir d'un fichier Iramuteq
+	//1. Segmentation des corpus à partir d'un fichier Iramuteq
 	/*
 		var testDict string
 		seg, _ := gse.NewEmbed("zh, word 20 n"+testDict, "en")
@@ -72,7 +72,7 @@ func main() {
 
 	*/
 
-	//1. Partie sur le traitement de pre-processing
+	//2. Traitement de pre-processing
 
 	/*
 		file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
@@ -95,6 +95,8 @@ func main() {
 
 	*/
 
+	//3. Application de la méthode de Reinert
+
 	var read_matrix [][]int
 	doc := [...]string{"si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle", "obligatoire une", "Le vote devrait rendu  obligatoire !"}
 	termes := []string{"vote", "une", "est", "obligatoire"}
@@ -108,8 +110,9 @@ func main() {
 	//fmt.Println("Classe 1 fréquence:", tab_freq_1, "classe 2 fréquence :", tab_freq_2)
 	fmt.Println("chi2=", chi2)
 
-	// Maximisation de chi2 pour trouver le regroupement final
-	// Algo de CHD
+	//Besoin de trouver la maximisation de chi2 pour trouver le regroupement final
 
-	// 4. Retourne les resultats en JSON
+	//4. Algo de CHD
+
+	//5. Retourne les resultats en JSON
 }
