@@ -7,24 +7,22 @@ import (
 )
 
 func main() {
-	//1. Segmentation des corpus à partir d'un fichier Iramuteq
-	/*
-		file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		var tab_doc = segmentation_text(string(file), 50)
-		fmt.Println(tab_doc)
-	*/
-	//2. Traitement de pre-processing
+	//1. Segmentation des corpus + Traitement du pre-processing à partir d'un fichier Iramuteq
 
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	preprocess(string(file))
+	var tab_doc = segmentation_text(string(file), 10)
+	for i := range tab_doc {
+		tab_doc[i] = preprocess(tab_doc[i])
+	}
+
+	fmt.Println(tab_doc)
+	fmt.Println("Taille du tableau des corpus: ", len(tab_doc))
+	var tab_words = regroupement_tokens(tab_doc)
+	fmt.Println(tab_words)
 
 	//3. Application de la méthode de Reinert
 	/*

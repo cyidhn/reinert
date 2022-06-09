@@ -11,7 +11,7 @@ func csv_to_dict() []LemmatisationStruct {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Successfully Opened CSV file")
+	//fmt.Println("Successfully Opened CSV file")
 	defer csvFile.Close()
 
 	csvlines := csv.NewReader(csvFile)
