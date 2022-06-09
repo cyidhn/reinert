@@ -19,7 +19,7 @@ func csv_to_dict() []LemmatisationStruct {
 		fmt.Println(err)
 	}
 
-	data, err := csvlines.ReadAll()
+	data, _ := csvlines.ReadAll()
 	var rows []LemmatisationStruct
 
 	// Convert to struct
@@ -28,6 +28,5 @@ func csv_to_dict() []LemmatisationStruct {
 			rows = append(rows, LemmatisationStruct{line[0], line[1]})
 		}
 	}
-	//fmt.Println(rows)
 	return rows
 }
