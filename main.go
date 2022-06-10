@@ -34,6 +34,7 @@ func main() {
 			fmt.Println("Liste des termes pour chaque document après le nettoyage:", tab_words)
 		}
 	}
+
 	//4. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
 
 	//5. Application de la méthode de Reinert
