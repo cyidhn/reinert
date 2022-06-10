@@ -48,23 +48,22 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 	return matrix
 }
 
+//Fonction de regroupement des termes
 func regroupement_tokens(doc []string) [][]string {
-	var matrix_tokens [][]string //[doc1: [each_word1],doc2: [each_word2], doc3:[[each_word3]] => matrix
-	var tab_words []string
+	var matrix_tokens [][]string
 	for i := range doc {
 		sep := strings.Fields(doc[i])
-		fmt.Println(sep)
-		for word := range sep {
-			tab_words = append(tab_words, sep[word]) //Récupère tout les mots sur un seul tableau
-		}
+		matrix_tokens = append(matrix_tokens, sep)
 	}
-	//fmt.Println(tab_words)
-	matrix_tokens = append(matrix_tokens, tab_words)
 	return matrix_tokens
 }
 
-//Fonction regroupement des documents sur la matrice terme-documents
-//Partition en deux classes
+//Fonction de suppression des élements vides dans un tableau
+func remove(slice []string, s int) []string {
+	return append(slice[:s], slice[s+1:]...)
+}
+
+//Fonction regroupement des documents sur la matrice terme-documents par une partition en deux classes
 func regroupement_doc(matrix [][]int) [][]int {
 	var group1, group2 []int
 	var group_matrix [][]int

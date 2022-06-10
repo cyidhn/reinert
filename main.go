@@ -9,24 +9,34 @@ import (
 )
 
 func main() {
-	//1. Segmentation des corpus + Traitement du pre-processing à partir d'un fichier Iramuteq
+	//1. Segmentation des corpus à partir d'un fichier Iramuteq
 	start := time.Now()
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	var tab_doc = segmentation_text(string(file), 2)
+	var tab_doc = segmentation_text(string(file), 50)
+
+	//2. Traitement du pre-processing
 	fmt.Println("Load Lemmatization ...")
 	for i := range tab_doc {
 		tab_doc[i] = preprocess(tab_doc[i])
 	}
-	fmt.Println(tab_doc)
-	fmt.Println("Taille du tableau des corpus: ", len(tab_doc))
-
+	//3. Regroupement des tokens sur une matrice
+	// ATTENTION ! Il y a des élements dans la liste qui contiennent des élements vides il faut bien penser à supprimer
 	var tab_words = regroupement_tokens(tab_doc)
-	fmt.Println(tab_words)
-	//3. Application de la méthode de Reinert
+	fmt.Println("Liste des termes pour chaque document:", tab_words)
+	fmt.Println("Taille du tableau du corpus: ", len(tab_words))
+	for i := range tab_words {
+		if tab_words[i] == nil {
+			remove(tab_words[i], i) //Erreur: ça enlève l'index dans l'élement du tableau
+			fmt.Println("Liste des termes pour chaque document après le nettoyage:", tab_words)
+		}
+	}
+	//4. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
+
+	//5. Application de la méthode de Reinert
 	/*
 		var read_matrix [][]int
 		doc := [...]string{"si le vote blanc soit comptabilité", "C'est nécesssaire  pour notre démocratie !", "une vote impérieuse  doute et nulle", "obligatoire une", "Le vote devrait rendu  obligatoire !"}
@@ -42,8 +52,8 @@ func main() {
 		fmt.Println("chi2=", chi2)
 		//Besoin de trouver la maximisation de chi2 pour trouver le regroupement final
 	*/
-	//4. Algo de CHD
-	//5. Retourne les resultats en JSON
+	//6. Algo de CHD
+	//7. Retourne les resultats en JSON
 	elapsed := time.Since(start)
 	log.Printf("Binomial took %s", elapsed)
 }
