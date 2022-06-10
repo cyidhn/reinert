@@ -3,27 +3,29 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
+	"time"
 )
 
 func main() {
 	//1. Segmentation des corpus + Traitement du pre-processing à partir d'un fichier Iramuteq
-
+	start := time.Now()
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	var tab_doc = segmentation_text(string(file), 10)
+	var tab_doc = segmentation_text(string(file), 2)
+	fmt.Println("Load Lemmatization ...")
 	for i := range tab_doc {
 		tab_doc[i] = preprocess(tab_doc[i])
 	}
-
 	fmt.Println(tab_doc)
 	fmt.Println("Taille du tableau des corpus: ", len(tab_doc))
+
 	var tab_words = regroupement_tokens(tab_doc)
 	fmt.Println(tab_words)
-
 	//3. Application de la méthode de Reinert
 	/*
 		var read_matrix [][]int
@@ -42,4 +44,6 @@ func main() {
 	*/
 	//4. Algo de CHD
 	//5. Retourne les resultats en JSON
+	elapsed := time.Since(start)
+	log.Printf("Binomial took %s", elapsed)
 }

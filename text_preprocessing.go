@@ -12,12 +12,10 @@ import (
 )
 
 func lematize(text string) string {
-	//start := time.Now()
 	var tab []string
 	var wordtoappend string
 	dict := csv_to_dict()
 	result := strings.Fields(text)
-	//fmt.Println("Load Lemmatization ...")
 	for word := range result {
 		wordtoappend = result[word]
 		for _, value := range dict {
@@ -27,8 +25,6 @@ func lematize(text string) string {
 		}
 		tab = append(tab, wordtoappend)
 	}
-	//elapsed := time.Since(start)
-	//log.Printf("Binomial took %s", elapsed)
 	return strings.Join(tab, " ")
 }
 

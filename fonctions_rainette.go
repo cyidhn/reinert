@@ -49,16 +49,16 @@ func matrix_term_doc(doc []string, termes []string) [][]int {
 }
 
 func regroupement_tokens(doc []string) [][]string {
-	var matrix_tokens [][]string //[[each_word1],[each_word2],[[each_word3]] => matrix
+	var matrix_tokens [][]string //[doc1: [each_word1],doc2: [each_word2], doc3:[[each_word3]] => matrix
 	var tab_words []string
 	for i := range doc {
 		sep := strings.Fields(doc[i])
-		//fmt.Println(sep)
-		for _, word := range sep {
-			fmt.Println(word)
-			tab_words = append(tab_words, word)
+		fmt.Println(sep)
+		for word := range sep {
+			tab_words = append(tab_words, sep[word]) //Récupère tout les mots sur un seul tableau
 		}
 	}
+	//fmt.Println(tab_words)
 	matrix_tokens = append(matrix_tokens, tab_words)
 	return matrix_tokens
 }
