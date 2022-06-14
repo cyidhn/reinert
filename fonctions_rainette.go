@@ -58,11 +58,6 @@ func regroupement_tokens(doc []string) [][]string {
 	return matrix_tokens
 }
 
-//Fonction de suppression des élements vides dans un tableau
-func remove(slice []string, s int) []string {
-	return append(slice[:s], slice[s+1:]...)
-}
-
 //Fonction regroupement des documents sur la matrice terme-documents par une partition en deux classes
 func regroupement_doc(matrix [][]int) [][]int {
 	var group1, group2 []int

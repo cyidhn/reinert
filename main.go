@@ -16,26 +16,12 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	var tab_doc = segmentation_text(string(file), 50)
 
-	//2. Traitement du pre-processing
-	fmt.Println("Load Lemmatization ...")
-	for i := range tab_doc {
-		tab_doc[i] = preprocess(tab_doc[i])
-	}
-	//3. Regroupement des tokens sur une matrice
-	// ATTENTION ! Il y a des élements dans la liste qui contiennent des élements vides il faut bien penser à supprimer
-	var tab_words = regroupement_tokens(tab_doc)
-	fmt.Println("Liste des termes pour chaque document:", tab_words)
-	fmt.Println("Taille du tableau du corpus: ", len(tab_words))
-	for i := range tab_words {
-		if tab_words[i] == nil {
-			remove(tab_words[i], i) //Erreur: ça enlève l'index dans l'élement du tableau
-			fmt.Println("Liste des termes pour chaque document après le nettoyage:", tab_words)
-		}
-	}
+	var tab_doc = segmentation_text(string(file), 10000)
+	fmt.Println(tab_doc)
+	fmt.Println("Nombre d'occurences de termes pour le premier docuement", dict_doc_terme(tab_doc))
 
-	//4. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
+	//3. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
 
 	//5. Application de la méthode de Reinert
 	/*
