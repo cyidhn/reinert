@@ -31,24 +31,14 @@ func segmentation_sentence(doc string, segment_size int) []string {
 
 //Fonction de segmentation de text
 func segmentation_text(doc string, segment_size int) [][]string { //Un document de 20 mots pour utiliser une taille de 4 segments
-
 	tab_seg := [][]string{} //Stocker 4 segments
-	list_words := []string{}
+	list_tokens := tokens_all(doc)
 	seg := []string{}
+	size_word := len(list_tokens) / segment_size
 
-	//1. Traitement du pre-processing
-	pro := preprocess(doc)
-	sep := strings.Fields(pro)
-	size_word := len(sep) / segment_size
-
-	//2. Ajout tout les mots
-	for i := range sep {
-		list_words = append(list_words, sep[i])
-	}
 	var cpt = 0
-
 	//3. Découpage des segments en fonction de la quantité des mots
-	for _, word := range list_words {
+	for _, word := range list_tokens {
 		seg = append(seg, word)
 		cpt++
 		if cpt == size_word {
@@ -66,10 +56,26 @@ func segmentation_text(doc string, segment_size int) [][]string { //Un document 
 	return tab_seg
 }
 
-func dict_doc_terme(tab_seg [][]string) map[string]int {
+func tokens_all(doc string) []string {
+	list_words := []string{}
+	sep := strings.Fields(doc)
+	for i := range sep {
+		list_words = append(list_words, sep[i])
+	}
+	return list_words
+}
+
+//Fonction qui permet de compter le nombre de vocabulaire sur un dictionnaire
+func count_vocabulary(doc string) map[string]int {
+	//Trois variables pour permettre de créer une matrice creuse au format CSR
+	/*
+		var list_values []int //Valeurs des indices non nulles IA = NNN
+		var i_indices []int   //valeurs récursives des lignes IA(i+1) = IA(i) + NNNi
+		var j_indices []int   //Valeurs récursives des colonnes IA(j+1) = IA(j) + NNNj
+	*/
 	dict_terme := make(map[string]int)
-	wordlist := tab_seg[:][0]
-	for _, word := range wordlist {
+	liste_words := tokens_all(doc)
+	for _, word := range liste_words {
 		_, ok := dict_terme[word]
 		if ok {
 			dict_terme[word] += 1
@@ -77,5 +83,6 @@ func dict_doc_terme(tab_seg [][]string) map[string]int {
 			dict_terme[word] = 1
 		}
 	}
+
 	return dict_terme
 }
