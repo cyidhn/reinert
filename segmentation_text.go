@@ -83,6 +83,5 @@ func count_vocabulary(doc string) map[string]int {
 			dict_terme[word] = 1
 		}
 	}
-
 	return dict_terme
 }
