@@ -2,6 +2,7 @@ package main
 
 import (
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -67,12 +68,14 @@ func tokens_all(doc string) []string {
 
 //Fonction qui permet de compter le nombre de vocabulaire sur un dictionnaire
 func count_vocabulary(doc string) map[string]int {
+
 	//Trois variables pour permettre de créer une matrice creuse au format CSR
 	/*
 		var list_values []int //Valeurs des indices non nulles IA = NNN
 		var i_indices []int   //valeurs récursives des lignes IA(i+1) = IA(i) + NNNi
 		var j_indices []int   //Valeurs récursives des colonnes IA(j+1) = IA(j) + NNNj
 	*/
+
 	dict_terme := make(map[string]int)
 	liste_words := tokens_all(doc)
 	for _, word := range liste_words {
@@ -84,4 +87,20 @@ func count_vocabulary(doc string) map[string]int {
 		}
 	}
 	return dict_terme
+}
+
+func (p DictionaryList) Len() int           { return len(p) }
+func (p DictionaryList) Less(i, j int) bool { return p[i].Value < p[j].Value }
+func (p DictionaryList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+
+//Fonction qui permettra de trier les valeurs dans l'ordre croissant les mots les plus fréquents
+func sorted_dict(wordFrequencies map[string]int) DictionaryList {
+	pl := make(DictionaryList, len(wordFrequencies))
+	i := 0
+	for k, v := range wordFrequencies {
+		pl[i] = Dictionary{k, v}
+		i++
+	}
+	sort.Sort(sort.Reverse(pl))
+	return pl
 }
