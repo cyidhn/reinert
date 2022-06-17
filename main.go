@@ -25,9 +25,7 @@ func main() {
 	fmt.Println(tab_doc)
 
 	//2. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
-	//fmt.Println(sorted_dict(count_vocabulary(pro)))
-
-	//test()
+	fmt.Println(sorted_dict(count_vocabulary(pro)))
 
 	//5. Application de la méthode de Reinert
 	/*
