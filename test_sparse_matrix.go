@@ -11,6 +11,14 @@ func test() {
 	dokMatrix := sparse.NewDOK(3, 2)
 	fmt.Println("dokmatrix:", dokMatrix)
 
+	r := 3
+	c := 3
+	ia := []int{1, 2, 3}
+	ja := []int{2, 3, 4}
+	var data = []float64{}
+	matrix_CSR := sparse.NewCSR(r, c, ia, ja, data)
+	fmt.Println(matrix_CSR)
+
 	// Populate it with some non-zero values
 	dokMatrix.Set(0, 0, 5)
 	dokMatrix.Set(2, 1, 7)

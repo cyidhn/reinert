@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"sort"
 	"strings"
@@ -99,9 +98,11 @@ func sorted_dict(wordFrequencies map[string]int) DictionaryList {
 }
 
 func matrix_term_doc_(tab_doc []string) {
-	var ia = make([]int, 2)
-	var ja = make([]int, 2)
-	var data = make([]float64, 4)
-	matrix_CSR := NewCSR(3, 3, ia, ja, data)
-	fmt.Println(matrix_CSR)
+	/*
+		var indptr = make([]int, 2)
+		var j_indices = make([]int, 2)
+		var values = make([]float64, 4)
+		matrix_CSR := sparse.NewCSR(3, 3, ia, ja, data)
+		fmt.Println(matrix_CSR)
+	*/
 }

@@ -10,6 +10,7 @@ import (
 
 func main() {
 	//1. Segmentation des corpus à partir d'un fichier Iramuteq
+
 	start := time.Now()
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
 	if err != nil {
@@ -18,13 +19,15 @@ func main() {
 	}
 
 	//Nettoyage du texte
-	var pro = preprocess(string(file))
+	var pro = preprocess(string(file), true)
 	//Segmentation du texte
 	var tab_doc = segmentation_text(pro, 10000)
 	fmt.Println(tab_doc)
 
 	//2. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
-	fmt.Println(sorted_dict(count_vocabulary(pro)))
+	//fmt.Println(sorted_dict(count_vocabulary(pro)))
+
+	//test()
 
 	//5. Application de la méthode de Reinert
 	/*
