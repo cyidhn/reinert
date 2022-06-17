@@ -5,8 +5,6 @@ import (
 	"regexp"
 	"sort"
 	"strings"
-
-	"github.com/james-bowman/sparse"
 )
 
 //Fonction qui permet de segmenter les mots pour un seul document
@@ -100,19 +98,30 @@ func sorted_dict(wordFrequencies map[string]int) DictionaryList {
 	return pl
 }
 
-func matrix_term_doc_(tab_doc []string) {
+func test_matrix_CSR(doc string, segment_size int) {
+	tab_doc := segmentation_text(doc, segment_size)
+
+	//Initialisation à 0
 	indptr := []int{}
-	j_indices := []int{}
-	values := []float64{}
 	indptr = append(indptr, 0)
-	/*
-		for d := range tab_doc {
-			for term := range d {
-				index :=
-			}
+
+	data := []int{}
+	dict_terme := count_vocabulary(doc)
+	j_indices := make([]int, 0, len(dict_terme))
+
+	for _, k := range dict_terme {
+		//j_indices = append(j_indices, j)
+		data = append(data, k)
+	}
+
+	for d := range tab_doc {
+		for term := range tab_doc {
+			fmt.Println(term, d)
 		}
-	*/
-	matrix_CSR := sparse.NewCSR(3, 3, indptr, j_indices, values)
-	fmt.Println(matrix_CSR)
+		indptr = append(indptr, len(j_indices))
+	}
+
+	//matrix_CSR := sparse.NewCSR(3, 3, indptr, j_indices, values)
+	//fmt.Println(matrix_CSR)
 
 }

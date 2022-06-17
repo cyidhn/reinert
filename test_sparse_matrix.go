@@ -11,6 +11,14 @@ func test() {
 	dokMatrix := sparse.NewDOK(3, 2)
 	fmt.Println("dokmatrix:", dokMatrix)
 
+	r := 3
+	c := 3
+	ia := []int{1, 2, 3}
+	ja := []int{2, 3, 4}
+	var data = []float64{}
+	matrix_CSR := sparse.NewCSR(r, c, ia, ja, data)
+	fmt.Println(matrix_CSR)
+
 	// Populate it with some non-zero values
 	dokMatrix.Set(0, 0, 5)
 	dokMatrix.Set(2, 1, 7)
@@ -54,21 +62,4 @@ func test() {
 		fmt.Printf("Expected product 2x3 but received %dx%d\n", rows, cols)
 	}
 
-}
-
-func test_matrix_CSR(doc []string) {
-	indptr := []int{}
-	indptr = append(indptr, 0)
-	j_indices := []int{}
-	values := []float64{}
-	/*
-		   for d := range docs {
-				for term := range d {
-
-				}
-		   }
-	*/
-
-	matrix_CSR := sparse.NewCSR(3, 3, indptr, j_indices, values)
-	fmt.Println(matrix_CSR)
 }

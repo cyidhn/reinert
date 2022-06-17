@@ -18,14 +18,16 @@ func main() {
 		os.Exit(1)
 	}
 
+	//test_matrix_CSR(string(file), 10000)
+
 	//Nettoyage du texte
-	var pro = preprocess(string(file), true)
+	var pro = preprocess(string(file), false)
 	//Segmentation du texte
 	var tab_doc = segmentation_text(pro, 10000)
 	fmt.Println(tab_doc)
 
 	//2. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
-	fmt.Println(sorted_dict(count_vocabulary(pro)))
+	fmt.Println(count_vocabulary(pro))
 
 	//5. Application de la méthode de Reinert
 	/*
