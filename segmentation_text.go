@@ -36,14 +36,13 @@ func segmentation_text(doc string, segment_size int) [][]string { //Un document 
 	tab_seg := [][]string{} //Stocker 4 segments
 	list_tokens := tokens_all(doc)
 	seg := []string{}
-	size_word := len(list_tokens) / segment_size
 
 	var cpt = 0
 	//3. Découpage des segments en fonction de la quantité des mots
 	for _, word := range list_tokens {
 		seg = append(seg, word)
 		cpt++
-		if cpt == size_word {
+		if cpt == segment_size {
 			tab_seg = append(tab_seg, seg)
 			seg = []string{}
 			cpt = 0
@@ -65,6 +64,18 @@ func tokens_all(doc string) []string {
 		list_words = append(list_words, sep[i])
 	}
 	return list_words
+}
+
+func tokens_segmentation(doc [][]string) []string {
+	sep := []string{}
+	for i, rows := range doc {
+		for _, word := range rows {
+			if i == 0 {
+				sep = strings.Fields(word)
+			}
+		}
+	}
+	return sep
 }
 
 //Fonction qui permet de compter le nombre de vocabulaire sur un dictionnaire

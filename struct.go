@@ -11,3 +11,8 @@ type Dictionary struct {
 }
 
 type DictionaryList []Dictionary
+
+type tokens_doc struct {
+	number_doc  int
+	list_tokens []string
+}
