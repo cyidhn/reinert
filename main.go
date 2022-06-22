@@ -9,6 +9,12 @@ import (
 )
 
 func main() {
+	//Déclaration des variables:
+	var lematize = false
+	var segment_size = 50
+	var early_doc = 1
+	var end_doc = 3
+
 	//1. Ouverture du fichier Iramuteq
 	start := time.Now()
 	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
@@ -18,13 +24,14 @@ func main() {
 	}
 
 	//2. Nettoyage du texte
-	pro := preprocess(string(file), false) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
+	// preprocess("nom du fichier", )
+	pro := preprocess(string(file), lematize) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
 
 	//3. Application de Segmentation du texte
-	tab_doc := segmentation_text(pro, 50) //Segmentation sur 50 mots
+	tab_doc := segmentation_text(pro, segment_size) //Segmentation sur 50 mots
 
-	//4. Compter le nombre de termes pour chaque document pour créer par la suite une matrice terme-document
-	new_tab_doc := select_nbdoc(tab_doc, 1, 3)
+	//4. Sélectionner le nombre de documents pour créer par la suite une matrice terme-document
+	new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
 
 	//5. Création une matrice terme document choisi par rapport aux nombres de documents
 	fmt.Println(matrix_term_doc_(new_tab_doc))

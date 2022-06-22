@@ -60,8 +60,8 @@ func tokens_all(doc string) []string {
   Fonction d'écriture d'une matrice terme document sous format d'une matrice creuse (sparse matrix)
  	En sortie, on retourne une matrice creuse qu'on aura 3 paramètres différents:
 	map[{a,b}:c]
-	a : Numéro d'identifiant du mot dans le dictionnaire du vocabulaire
-	b : Numéro d'identifiant du document (par exemple le numéro 0 correspond au premier document)
+	a : Numéro d'identifiant du mot dans le dictionnaire du vocabulaire (par exemple le numéro 0 identifie le mot climat)
+	b : Numéro d'identifiant du document (par exemple le numéro 0 identifie le premier document)
 	c : Nombre de termes dans un document
 */
 func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
