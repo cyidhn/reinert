@@ -56,7 +56,14 @@ func tokens_all(doc string) []string {
 	return list_words
 }
 
-//Fonction d'écriture d'une matrice terme document sous format d'une matrice creuse (sparse matrix)
+/*
+  Fonction d'écriture d'une matrice terme document sous format d'une matrice creuse (sparse matrix)
+ 	En sortie, on retourne une matrice creuse qu'on aura 3 paramètres différents:
+	map[{a,b}:c]
+	a : Numéro d'identifiant du mot dans le dictionnaire du vocabulaire
+	b : Numéro d'identifiant du document (par exemple le numéro 0 correspond au premier document)
+	c : Nombre de termes dans un document
+*/
 func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 	corpus := []string{}
 	for k := range tab_doc {
@@ -66,12 +73,6 @@ func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 	matrix, _ := vectoriser.FitTransform(corpus...) //Equivalent à FitTransform dans Sklearn
 	fmt.Println(sorted_dict(vectoriser.Vocabulary)) //Affichage du dictionnaire des vocabulaires
 	return matrix
-	/*  En sortie, on retourne une matrice creuse qu'on aura 3 paramètres différents:
-	map[{a,b}:c
-	a : Numéro d'identifiant du mot
-	b : Numéro d'identifiant du document
-	c : Nombre de termes dans un document
-	*/
 }
 
 //Fonction qui permettra de trier les valeurs dans l'ordre croissant les occurences des termes
@@ -117,6 +118,7 @@ func split_segments_words(doc string, segment_size int) []string {
 	return tab_doc
 }
 
+//Fonction de segmentation par phrase de texte
 func segmentation_sentence(doc string, segment_size int) []string {
 	tab_doc := []string{}
 	reg := regexp.MustCompile(`[,.?!]`)
