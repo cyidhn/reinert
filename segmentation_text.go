@@ -36,10 +36,10 @@ func segmentation_text(doc string, segment_size int) [][]string { //Un document 
 }
 
 //Fonction pour un utilisateur choisit plusieurs documents à récupérer dans une invervalle donné
-func select_nbdoc(tab_doc [][]string, first_choice int, second_choice int) [][]string {
+func select_nbdoc(tab_doc [][]string, early_doc int, end_doc int) [][]string {
 	new_tab_doc := [][]string{}
 	for k := range tab_doc {
-		if first_choice <= k && k <= second_choice {
+		if early_doc <= k && k <= end_doc {
 			new_tab_doc = append(new_tab_doc, tab_doc[:][k])
 		}
 	}
@@ -72,6 +72,7 @@ func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 	vectoriser := nlp.NewCountVectoriser()          //Equivalent à CountVectoriser dans Sklearn
 	matrix, _ := vectoriser.FitTransform(corpus...) //Equivalent à FitTransform dans Sklearn
 	fmt.Println(sorted_dict(vectoriser.Vocabulary)) //Affichage du dictionnaire des vocabulaires
+
 	return matrix
 }
 

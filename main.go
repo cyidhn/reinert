@@ -10,10 +10,10 @@ import (
 
 func main() {
 	//Déclaration des variables:
-	var lematize = false
+	var lematizer = false
 	var segment_size = 50
 	var early_doc = 1
-	var end_doc = 3
+	var end_doc = 4
 
 	//1. Ouverture du fichier Iramuteq
 	start := time.Now()
@@ -24,8 +24,7 @@ func main() {
 	}
 
 	//2. Nettoyage du texte
-	// preprocess("nom du fichier", )
-	pro := preprocess(string(file), lematize) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
+	pro := preprocess(string(file), lematizer) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
 
 	//3. Application de Segmentation du texte
 	tab_doc := segmentation_text(pro, segment_size) //Segmentation sur 50 mots
