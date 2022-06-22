@@ -10,7 +10,7 @@ for d in docs:
         index = vocabulary.setdefault(term, len(vocabulary))
         #print(index)
         indices.append(index)
-        print(indices)
+        #print(indices)
         data.append(1)
         #print(data)
     indptr.append(len(indices))

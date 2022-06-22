@@ -2,35 +2,32 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"time"
 )
 
 func main() {
-	//1. Segmentation des corpus à partir d'un fichier Iramuteq
+	//1. Ouverture du fichier Iramuteq
+	start := time.Now()
+	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	var tab_doc = segmentation_text("Le vote devrait être rendu obligatoire si les votes blancs sont comptabilités. C'est une nécessité démocratique pour notre pays et ses citoyens, une obligation impérieuse.", 5)
-	fmt.Println(tab_doc)
-	matrix := [][]string{{"Le vote devrait être rendu"}, {"obligatoire si les votes blancs"}, {"sont comptabilités. C'est une nécessité"}, {"émocratique pour notre pays et"}, {"ses citoyens, une obligation impérieuse."}}
-	fmt.Println(tokens_segmentation(matrix))
-	/*
-		start := time.Now()
-		file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
+	//2. Nettoyage du texte
+	pro := preprocess(string(file), false) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
 
-		//Nettoyage du texte
-		var pro = preprocess(string(file), false)
-		//Segmentation du texte
-		var tab_doc = segmentation_text(pro, 50)
-		fmt.Println(tab_doc)
+	//3. Application de Segmentation du texte
+	tab_doc := segmentation_text(pro, 50) //Segmentation sur 50 mots
 
-		//2. Compter le nombre de termes pour chaque élement pour créer par la suite une matrice terme-document
-		//fmt.Println(count_vocabulary(pro))
+	//4. Compter le nombre de termes pour chaque document pour créer par la suite une matrice terme-document
+	new_tab_doc := select_nbdoc(tab_doc, 1, 3)
 
-		elapsed := time.Since(start)
-		log.Printf("Binomial took %s", elapsed)
-	*/
+	//5. Création une matrice terme document choisi par rapport aux nombres de documents
+	fmt.Println(matrix_term_doc_(new_tab_doc))
 
 	//5. Application de la méthode de Reinert
 	/*
@@ -50,4 +47,6 @@ func main() {
 		//6. Algo de CHD
 		//7. Retourne les resultats en JSON
 	*/
+	elapsed := time.Since(start)
+	log.Printf("Binomial took %s", elapsed)
 }
