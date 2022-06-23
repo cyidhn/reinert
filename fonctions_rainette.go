@@ -8,7 +8,9 @@ import (
 
 /*
 Sources de recherche:
+Principe de l'algorithme de Rainette
 https://juba.github.io/rainette/articles/algorithmes.html
+Article scientifique sur le principe de l'algorithme de Reinert
 https://dumas.ccsd.cnrs.fr/dumas-02372217/document#:~:text=La%20m%C3%A9thode%20de%20Reinert%20(1983,de%20ces%20lois%20de%20distribution.
 */
 

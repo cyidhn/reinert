@@ -9,32 +9,34 @@ import (
 )
 
 func main() {
+	start := time.Now()
+
 	//Déclaration des variables:
-	var lematizer = true
+	var path_file = "./corpus/corpus.txt"
+	var lematizer = false
 	var segment_size = 50
-	//var early_doc = 1
-	//var end_doc = 4
+	var early_doc = 0
+	var end_doc = 3
 
 	//1. Ouverture du fichier Iramuteq
-	start := time.Now()
-	file, err := ioutil.ReadFile("./corpus/clean_file.txt") //Lecture tout l'intégralité du texte
+	file, err := ioutil.ReadFile(path_file) //Lecture tout l'intégralité du texte
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
 	//2. Nettoyage du texte
-	pro := preprocess(string(file), lematizer) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
+	pro := preprocess(remove_name_candidat(string(file)), lematizer) //Vrai si l'utilisateur procède la lemmatisation, faux sinon
 
 	//3. Application de Segmentation du texte
 	tab_doc := segmentation_text(pro, segment_size) //Segmentation sur 50 mots
-	fmt.Println(tab_doc)
+	//fmt.Println(tab_doc)
 
 	//4. Sélectionner le nombre de documents pour observer le matrice terme document
-	//new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
+	new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
 
 	//5. Création une matrice terme document choisi par rapport aux nombres de documents
-	fmt.Println(matrix_term_doc_(tab_doc))
+	fmt.Println(matrix_term_doc_(new_tab_doc))
 
 	//5. Application de la méthode de Reinert
 	/*

@@ -11,6 +11,15 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
+/*
+La structure CountVectoriser dans le package NLP qui va être utilisé pour encoder plusieurs documents de texte
+dans un document terminologique matrice où chaque colonne représente un document dans le corpus et chaque ligne représente
+un terme présent dans l'ensemble de données d'apprentissage.
+Chaque élément représente la fréquence à laquelle le terme correspondant apparaît dans le document correspondant,
+par exemple tf(t, d) = 5 signifierait ce terme t (peut-être le mot "chien") apparaît 5 fois dans le document d.
+Source de recherche : https://pkg.go.dev/github.com/james-bowman/nlp
+*/
+
 //Fonction de segmentation de text (découpage de texte)
 func segmentation_text(doc string, segment_size int) [][]string { //Un document de 20 mots pour utiliser une taille de 4 segments
 	tab_seg := [][]string{} //Stocker 4 segments

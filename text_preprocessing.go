@@ -12,6 +12,19 @@ import (
 	"golang.org/x/text/unicode/norm"
 )
 
+/*
+Sources de recherche:
+Package pour enlever les stopwords
+https://pkg.go.dev/github.com/bbalet/stopwords
+Le package des runes fournit des transformations pour le texte encodé en UTF-8.
+https://pkg.go.dev/golang.org/x/text/runes
+Le package de transformation fournit des wrappersde lecture et d'écriture qui transforment les octets
+qui transitent ainsi que diverses transformations.
+https://pkg.go.dev/golang.org/x/text/transform
+Le package de norme permet de normaliser les chaînes Unicode.
+https://pkg.go.dev/golang.org/x/text/unicode/norm
+*/
+
 func lematize(text string) string {
 	var tab []string
 	var wordtoappend string
@@ -41,6 +54,7 @@ func preprocess(text string, lema bool) string {
 	res = reg.ReplaceAllString(text, "")                                             //Résultats pour Regex
 	accent = transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC) //Enlever les accents du texte
 	result, _, _ = transform.String(accent, res)                                     //Résultat pour remove accents
+
 	//Condition d'application de lematisation
 	if lema {
 		lematizer = lematize(string(result))                        //Lematization
@@ -52,6 +66,12 @@ func preprocess(text string, lema bool) string {
 		clean_text = remove_words(delete_words)
 		return clean_text
 	}
+}
+
+func remove_name_candidat(text string) string {
+	re := regexp.MustCompile("(?m)[\r\n]+^.*candidat.*$")
+	res := re.ReplaceAllString(text, "")
+	return res
 }
 
 func remove_words(text string) string {
