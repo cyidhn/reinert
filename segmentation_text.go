@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"sort"
 	"strings"
@@ -69,10 +70,13 @@ func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 	for k := range tab_doc {
 		corpus = append(corpus, strings.Join(tab_doc[:][k], " "))
 	}
-	vectoriser := nlp.NewCountVectoriser()          //Equivalent à CountVectoriser dans Sklearn
-	matrix, _ := vectoriser.FitTransform(corpus...) //Equivalent à FitTransform dans Sklearn
+	vectoriser := nlp.NewCountVectoriser()            //Equivalent à CountVectoriser dans Sklearn
+	matrix, err := vectoriser.FitTransform(corpus...) //Equivalent à FitTransform dans Sklearn
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 	fmt.Println(sorted_dict(vectoriser.Vocabulary)) //Affichage du dictionnaire des vocabulaires
-
 	return matrix
 }
 

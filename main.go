@@ -10,10 +10,10 @@ import (
 
 func main() {
 	//Déclaration des variables:
-	var lematizer = false
+	var lematizer = true
 	var segment_size = 50
-	var early_doc = 1
-	var end_doc = 4
+	//var early_doc = 1
+	//var end_doc = 4
 
 	//1. Ouverture du fichier Iramuteq
 	start := time.Now()
@@ -28,12 +28,13 @@ func main() {
 
 	//3. Application de Segmentation du texte
 	tab_doc := segmentation_text(pro, segment_size) //Segmentation sur 50 mots
+	fmt.Println(tab_doc)
 
-	//4. Sélectionner le nombre de documents pour créer par la suite une matrice terme-document
-	new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
+	//4. Sélectionner le nombre de documents pour observer le matrice terme document
+	//new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
 
 	//5. Création une matrice terme document choisi par rapport aux nombres de documents
-	fmt.Println(matrix_term_doc_(new_tab_doc))
+	fmt.Println(matrix_term_doc_(tab_doc))
 
 	//5. Application de la méthode de Reinert
 	/*
