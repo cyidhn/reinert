@@ -7,7 +7,6 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/go-gota/gota/dataframe"
 	"github.com/james-bowman/nlp"
 	"gonum.org/v1/gonum/mat"
 )
@@ -47,6 +46,7 @@ func segmentation_text(doc string, segment_size int) [][]string { //Un document 
 }
 
 //Fonction pour un utilisateur choisit plusieurs documents à récupérer dans une invervalle donné
+//Servir plus tard une fonction pour évaluer notre maximum de chi2
 func select_nbdoc(tab_doc [][]string, early_doc int, end_doc int) [][]string {
 	new_tab_doc := [][]string{}
 	for k := range tab_doc {
@@ -90,11 +90,6 @@ func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 	return matrix
 }
 
-func matrix_td_to_dataframe(term_doc mat.Matrix) dataframe.DataFrame {
-	dataframe := dataframe.LoadMatrix(term_doc)
-	return dataframe
-}
-
 //Fonction qui permettra de trier les valeurs dans l'ordre croissant les occurences des termes
 func (p DictionaryList) Len() int           { return len(p) }
 func (p DictionaryList) Less(i, j int) bool { return p[i].Value < p[j].Value }
@@ -111,7 +106,7 @@ func sorted_dict(wordFrequencies map[string]int) DictionaryList {
 	return pl
 }
 
-//Fonction qui permet de compter le nombre de vocabulaire pour tout les documents
+//Fonction qui permet de compter le nombre de termes pour tout les documents
 func count_vocabulary(doc string) map[string]int {
 	dict_terme := make(map[string]int)
 	liste_words := tokens_all(doc)
