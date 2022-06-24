@@ -7,6 +7,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/go-gota/gota/dataframe"
 	"github.com/james-bowman/nlp"
 	"gonum.org/v1/gonum/mat"
 )
@@ -85,8 +86,13 @@ func matrix_term_doc_(tab_doc [][]string) mat.Matrix {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println(sorted_dict(vectoriser.Vocabulary)) //Affichage du dictionnaire des vocabulaires
+	//fmt.Println(sorted_dict(vectoriser.Vocabulary)) //Affichage du dictionnaire des vocabulaires
 	return matrix
+}
+
+func matrix_td_to_dataframe(term_doc mat.Matrix) dataframe.DataFrame {
+	dataframe := dataframe.LoadMatrix(term_doc)
+	return dataframe
 }
 
 //Fonction qui permettra de trier les valeurs dans l'ordre croissant les occurences des termes

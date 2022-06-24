@@ -15,8 +15,8 @@ func main() {
 	var path_file = "./corpus/corpus.txt"
 	var lematizer = false
 	var segment_size = 50
-	var early_doc = 0
-	var end_doc = 3
+	var early_doc = 1
+	var end_doc = 8
 
 	//1. Ouverture du fichier Iramuteq
 	file, err := ioutil.ReadFile(path_file) //Lecture tout l'intégralité du texte
@@ -36,7 +36,11 @@ func main() {
 	new_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
 
 	//5. Création une matrice terme document choisi par rapport aux nombres de documents
-	fmt.Println(matrix_term_doc_(new_tab_doc))
+	//fmt.Println(matrix_term_doc_(new_tab_doc))
+
+	//6. Conversion vers un dataframe pour appliquer par la suite l'AFC
+	df := matrix_td_to_dataframe(matrix_term_doc_(new_tab_doc))
+	fmt.Println(df.Describe())
 
 	//5. Application de la méthode de Reinert
 	/*
