@@ -7,7 +7,7 @@ import (
 )
 
 func csv_to_dict() []LemmatisationStruct {
-	csvFile, err := os.Open("./corpus/Lemmatisation.csv")
+	csvFile, err := os.Open("./corpus/Lematisation.csv")
 	if err != nil {
 		fmt.Println(err)
 	}

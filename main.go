@@ -43,14 +43,14 @@ func main() {
 	//fmt.Println(df) //Affichage du dataframe
 
 	//Calcul des marges lignes et colonnes
-	m_columns, m_rows := marge_rows_columns(df)
+	m_columns, m_rows := get_marge_rows_columns(df)
 	//fmt.Println(m_columns, m_rows)
 
 	//Somme des marges de colonnes et de lignes
-	sum_m_column, sum_m_rows := sum_marge(m_columns, m_rows)
+	sum_m_column, sum_m_rows := get_sum_marge(m_columns, m_rows)
 
 	//Total du marge
-	marge_totale := total_marge(sum_m_column, sum_m_rows)
+	marge_totale := get_total_marge(sum_m_column, sum_m_rows)
 	fmt.Println(marge_totale)
 
 	//5. Application de la méthode de Reinert

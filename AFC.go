@@ -27,23 +27,30 @@ var sum = func(s series.Series) series.Series {
 }
 
 //Fonction marge des colonnes et des lignes
-func marge_rows_columns(df dataframe.DataFrame) (dataframe.DataFrame, dataframe.DataFrame) {
+func get_marge_rows_columns(df dataframe.DataFrame) (dataframe.DataFrame, dataframe.DataFrame) {
 	m_columns := df.Capply(sum) //Marge colonnes
 	m_rows := df.Rapply(sum)    //Marge des lignes
 	return m_columns, m_rows
 }
 
 //Fonction de somme des marges colonnes/lignes
-func sum_marge(df dataframe.DataFrame, df2 dataframe.DataFrame) (dataframe.DataFrame, dataframe.DataFrame) {
-	m_columns, m_rows := marge_rows_columns(df)
+func get_sum_marge(df dataframe.DataFrame, df2 dataframe.DataFrame) (dataframe.DataFrame, dataframe.DataFrame) {
+	m_columns, m_rows := get_marge_rows_columns(df)
 	sum_m_columns := m_columns.Rapply(sum)
 	sum_m_rows := m_rows.Capply(sum)
 	return sum_m_columns, sum_m_rows
 }
 
 //Fonction de calcul du total des marges
-func total_marge(df dataframe.DataFrame, df2 dataframe.DataFrame) dataframe.DataFrame {
+func get_total_marge(df dataframe.DataFrame, df2 dataframe.DataFrame) dataframe.DataFrame {
 	new_df := df.Concat(df2)
 	marge_total := new_df.Capply(sum)
 	return marge_total
+}
+
+func profil_marge() {
+	//Entrée marge colonne, marge ligne, marge total
+	//1) Trouver un moyen pour la marge de ligne de convertir la ligne en colonne sur un dataframe
+	//2)
+	//Sortie dataframe qui génère un tableau de fréquence pour chaque individu
 }
