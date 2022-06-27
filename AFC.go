@@ -48,8 +48,24 @@ func get_total_marge(df dataframe.DataFrame, df2 dataframe.DataFrame) dataframe.
 	return marge_total
 }
 
+func transpose(slice [][]string) [][]string {
+	xl := len(slice[0])
+	yl := len(slice)
+	result := make([][]string, xl)
+	for i := range result {
+		result[i] = make([]string, yl)
+	}
+	for i := 0; i < xl; i++ {
+		for j := 0; j < yl; j++ {
+			result[i][j] = slice[j][i]
+		}
+	}
+	return result
+}
+
 func profil_marge() {
 	//Entrée marge colonne, marge ligne, marge total
+
 	//1) Trouver un moyen pour la marge de ligne de convertir la ligne en colonne sur un dataframe
 	//2)
 	//Sortie dataframe qui génère un tableau de fréquence pour chaque individu
