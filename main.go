@@ -16,7 +16,7 @@ func main() {
 	var lematizer = false
 	var segment_size = 50
 	var early_doc = 1
-	var end_doc = 9
+	var end_doc = 7
 
 	//1. Ouverture du fichier Iramuteq
 	file, err := ioutil.ReadFile(path_file) //Lecture tout l'intégralité du texte
@@ -36,22 +36,24 @@ func main() {
 	select_tab_doc := select_nbdoc(tab_doc, early_doc, end_doc)
 
 	//5. Création une matrice terme document choisi par rapport aux nombres de documents
-	matrix_term_doc := (matrix_term_doc_(select_tab_doc))
+	matrix_term_doc := (matrix_term_doc_(select_tab_doc)) //tab_doc si on souhaite de prendre tout les documents
 
 	//6. Conversion vers un dataframe pour appliquer l'AFC
 	df := matrix_to_dataframe(matrix_term_doc)
-	//fmt.Println(df) //Affichage du dataframe
+	fmt.Println("Affichage du dataframe du matrice terme document:", df) //Affichage du dataframe
 
 	//Calcul des marges lignes et colonnes
 	m_columns, m_rows := get_marge_rows_columns(df)
-	//fmt.Println(m_columns, m_rows)
+	fmt.Println("Marge colonne", m_columns, "Marge ligne", m_rows)
 
 	//Somme des marges de colonnes et de lignes
-	sum_m_column, sum_m_rows := get_sum_marge(m_columns, m_rows)
+	sum_m_columns, sum_m_rows := get_sum_marge(m_columns, m_rows)
+	//Propriété: La somme des marges doivent être le même
+	fmt.Println("Somme des marges colonne/ligne", sum_m_columns, sum_m_rows)
 
 	//Total du marge
-	marge_totale := get_total_marge(sum_m_column, sum_m_rows)
-	fmt.Println(marge_totale)
+	marge_totale := get_total_marge(sum_m_columns, sum_m_rows)
+	fmt.Println("Marge totale:", marge_totale)
 
 	//5. Application de la méthode de Reinert
 	/*
