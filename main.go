@@ -53,7 +53,7 @@ func main() {
 
 	//Total du marge
 	marge_totale := get_total_marge(sum_m_columns, sum_m_rows)
-	fmt.Println("Marge totale:", marge_totale)
+	fmt.Println("Marge totale", marge_totale)
 
 	//5. Application de la méthode de Reinert
 	/*

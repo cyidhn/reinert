@@ -12,7 +12,7 @@ import (
 )
 
 /*
-La structure CountVectoriser dans le package NLP qui va être utilisé pour encoder plusieurs documents de texte
+La structure CountVectoriser dans le package NLP va être utilisé pour encoder plusieurs documents de texte
 dans un document terminologique matrice où chaque colonne représente un document dans le corpus et chaque ligne représente
 un terme présent dans l'ensemble de données d'apprentissage.
 Chaque élément représente la fréquence à laquelle le terme correspondant apparaît dans le document correspondant,

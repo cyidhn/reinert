@@ -6,9 +6,11 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
-//Ces fonctions permettront d'appliquer l'analyse factorielle des correspondances (AFC) à partir de notre matrice terme document
-//Les colonnes représentent le nombre de documents et les lignes représentent la catégorie du terme
-//Les valeurs représentent l'occurence d'un mot pour chaque document
+/*
+Ces fonctions permettront d'appliquer l'analyse factorielle des correspondances (AFC) à partir de notre matrice terme document
+Les colonnes représentent le nombre de documents et les lignes représentent la catégorie du terme
+Les valeurs représentent l'occurence d'un mot pour chaque document
+*/
 
 //Fonction de conversion matrix vers un dataframe
 func matrix_to_dataframe(term_doc mat.Matrix) dataframe.DataFrame {
