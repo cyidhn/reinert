@@ -40,7 +40,7 @@ func main() {
 
 	//6. Conversion vers un dataframe pour appliquer l'AFC
 	df := matrix_to_dataframe(matrix_term_doc)
-	fmt.Println("Affichage du dataframe du matrice terme document:", df) //Affichage du dataframe
+	fmt.Println("Affichage sous format dataframe du matrice terme document:", df) //Affichage du dataframe
 
 	//Calcul des marges lignes et colonnes
 	m_columns, m_rows := get_marge_rows_columns(df)
@@ -48,7 +48,7 @@ func main() {
 
 	//Somme des marges de colonnes et de lignes
 	sum_m_columns, sum_m_rows := get_sum_marge(m_columns, m_rows)
-	//Propriété: La somme des marges doivent être le même
+	//La somme des marges doivent être le même
 	fmt.Println("Somme des marges colonne/ligne", sum_m_columns, sum_m_rows)
 
 	//Total du marge

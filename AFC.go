@@ -14,8 +14,8 @@ Les valeurs représentent l'occurence d'un mot pour chaque document
 
 //Fonction de conversion matrix vers un dataframe
 func matrix_to_dataframe(term_doc mat.Matrix) dataframe.DataFrame {
-	dataframe := dataframe.LoadMatrix(term_doc)
-	return dataframe
+	df := dataframe.LoadMatrix(term_doc)
+	return df
 }
 
 //Fonction d'application de sommme des valeurs dans un dataframe
